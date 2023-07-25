@@ -16,8 +16,6 @@ const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   if (!value) return null;
 
   const isNumberedList = value.children[0].type === "numbered_list_item";
-  console.log("numbered list");
-
   if (isNumberedList) {
 
     return <ol>{value.children.map((block: any) => renderBlock(block))}</ol>;
@@ -189,17 +187,17 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
   }
 
   return (
-    <div className={`${readerMode === 1 ? "bg-[#18181F]" : "bg-slate-950 bg-pattern"} pb-20 min-h-screen`}>
+    <div className={`${readerMode === 1 ? "bg-[#18181F]" : "bg-gray-950 bg-pattern"} pb-20 min-h-screen`}>
       <Head>
         <title>{page.properties.Name.title[0].plain_text}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {!!page.cover && (
-        <div className=" h-64">
-          <img src={page.cover?.external.url} alt="" className=" h-64 w-screen" />
+        <div className="h-48 md:h-64">
+          <img src={page.cover?.external.url} alt="" className="h-48 md:h-64 w-screen" />
         </div>
       )}
-      <article className=" w-7/12 mx-auto pt-10">
+      <article className=" w-10/12 md:w-8/12 mx-auto pt-10">
         <div className=" flex justify-between items-center">
           <label className="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" value={readerMode} onChange={() => setReaderMode(readerMode === 1 ? 0 : 1)} className="sr-only peer" />
@@ -207,10 +205,10 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
             <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Reader mode</span>
           </label>
         </div>
-        <h1 className="text-5xl font-bold mt-7">
+        <h1 className=" text-3xl md:text-5xl font-bold mt-7">
           <Text text={page.properties.Name.title} />
         </h1>
-        <div className=" flex justify-between mt-5">
+        <div className=" flex justify-between mt-5 flex-col md:flex-row">
           <div className=" flex gap-2 items-center">
             <img src={constant.personalDetails.picture} alt="" className=" w-8 rounded-full" />
             {constant.personalDetails.firstName} {constant.personalDetails.lastName}
