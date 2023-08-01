@@ -33,6 +33,7 @@ export default function Home({ posts }: any) {
                 <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
                 <input type="text" className=" w-full py-2 px-4 bg-slate-800 border border-black rounded text-lg" placeholder="Search for blogs" onChange={(e) => setSearch(e.target.value)} />
                 <ol className="">
+                    {blogs.filter((blog: any) => blog.properties.Published.checkbox === false).length === 0 && (<p className="text-2xl text-center mt-20">No search results found {': ('}</p>)}
                     {blogs.filter((blog: any) => blog.properties.Published.checkbox === true)?.map((blog: any) => {
                         const date = new Date(blog.last_edited_time).toLocaleString(
                             "en-US",
