@@ -3,14 +3,15 @@
 # This script is used to prepare the environment for the build process.
 
 ## Removing the /pages/index.tsx file
-rm -rf ../pages/index.tsx
+cd ./pages
+rm -rf index.tsx
 
 ## make a new /pages/index.tsx file
-touch ../pages index.tsx
+touch index.tsx
 
 ## add this data to the /pages/index.tsx file
-cat > ../pages/index.tsx <<EOL
-import TechStack from '@/components/Home/TechStack'
+cat > index.tsx <<EOL
+import RecentBlogs from '@/components/Home/RecentBlogs'
 import { GetStaticProps } from 'next/types'
 import React from 'react'
 import { getDatabase } from '@/lib/notion'
@@ -50,18 +51,21 @@ EOL
 
 ## Removing About, Experiences and TechStack components
 
-rm -rf ../components/Home/About.tsx
-rm -rf ../components/Home/Experiences.tsx
-rm -rf ../components/Home/TechStack.tsx
+cd ../components/Home
+rm -rf About.tsx
+rm -rf Experiences.tsx
+rm -rf TechStack.tsx
+cd ../..
 
 ## remove ../helpers/constants.ts file
-rm -rf ../helpers/constants.ts
+cd ./helpers
+rm -rf constants.ts
 
 ## make a new ../helpers/constants.ts file
-touch ../helpers constants.ts
+touch constants.ts
 
 ## add this data to the ../helpers/constants.ts file
-cat > ../helpers/constants.ts <<EOL
+cat > constants.ts <<EOL
 export const constant = {
   personalDetails: {
     firstName: "Your",
@@ -139,17 +143,19 @@ export const constant = {
 };
 EOL
 
+cd ..
 
 ## make a .env.local file
 
-touch ../.env.local
+touch .env.local
 
 ## add this data to the .env.local file
-cat > ../.env.local <<EOL
+cat > .env.local <<EOL
 NOTION_TOKEN=
 NOTION_DATABASE_ID=
 EOL
 
-## install dependencies
-npm install
+## remove the profilr-pic.jpeg file
+rm -rf ./public/profile-pic.jpeg
 
+echo "Environment setup completed successfully 🎉"
