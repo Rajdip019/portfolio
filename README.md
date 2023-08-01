@@ -11,7 +11,7 @@ Clean up my personal data and prepare the repo.
 npm run prepare 
 ```
 
-### Step 2 :
+### Step 2 
 
 Install all dependencies 
 
@@ -19,7 +19,7 @@ Install all dependencies
 npm install
 ```
 
-## Step 3 
+### Step 3 
 
 Add Environment Variables. There is only two variables required to make this work. You already have a **.env.local** file in your root directory if you have done the Step 1 properly.
 ```
