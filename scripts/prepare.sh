@@ -6,7 +6,7 @@
 rm -rf ../pages/index.tsx
 
 ## make a new /pages/index.tsx file
-touch ../pages/index.tsx
+touch ../pages index.tsx
 
 ## add this data to the /pages/index.tsx file
 cat > ../pages/index.tsx <<EOL
@@ -58,7 +58,7 @@ rm -rf ../components/Home/TechStack.tsx
 rm -rf ../helpers/constants.ts
 
 ## make a new ../helpers/constants.ts file
-touch ../helpers/constants.ts
+touch ../helpers constants.ts
 
 ## add this data to the ../helpers/constants.ts file
 cat > ../helpers/constants.ts <<EOL
