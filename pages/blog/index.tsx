@@ -4,15 +4,23 @@ import { Text } from "@/components/Shared/NotionText";
 import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { constant } from "@/helpers/constants";
+import { useEffect, useState } from "react";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
 export default function Home({ posts }: any) {
+    const [search, setSearch] = useState("");
+    const [blogs, setBlogs] = useState(posts);
     const router = useRouter();
 
     const handleRoute = (id: string) => {
         router.push(`/blog/${id}`);
     }
+
+    useEffect(() => {
+        setBlogs( posts.filter((post: any) => post.properties.Name.title[0].plain_text.includes(search)));
+    }, [posts, search])
+
     return (
         <div className="bg-gray-950 bg-pattern pb-20 min-h-screen">
             <Head>
@@ -23,9 +31,10 @@ export default function Home({ posts }: any) {
             <main className=" w-10/12 md:w-7/12 mx-auto pt-10">
                 <h2 className="text-4xl font-bold">All articles</h2>
                 <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
+                <input type="text" className=" w-full py-2 px-4 bg-slate-800 border border-black rounded text-lg" placeholder="Search for blogs" onChange={(e) => setSearch(e.target.value)} />
                 <ol className="">
-                    {posts.filter((post: any) => post.properties.Published.checkbox === true)?.map((post: any) => {
-                        const date = new Date(post.last_edited_time).toLocaleString(
+                    {blogs.filter((blog: any) => blog.properties.Published.checkbox === true)?.map((blog: any) => {
+                        const date = new Date(blog.last_edited_time).toLocaleString(
                             "en-US",
                             {
                                 month: "short",
@@ -34,13 +43,13 @@ export default function Home({ posts }: any) {
                             }
                         );
                         return (
-                            <li key={post.id} onClick={() => handleRoute(post.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 transition-all cursor-pointer group relative">
+                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 transition-all cursor-pointer group relative">
                                 <h3 className=" text-xl md:text-2xl font-semibold md:group-hover:text-[1.7rem] transition-all">
-                                    <Text text={post.properties.Name.title} />
+                                    <Text text={blog.properties.Name.title} />
                                 </h3>
                                 <div className=" flex items-center text-sm gap-2 my-2">
-                                <p>Published on : {date}</p>
-                                   <span className=" hidden md:block">by {constant.personalDetails.firstName} {constant.personalDetails.lastName}</span> 
+                                    <p>Published on : {date}</p>
+                                    <span className=" hidden md:block">by {constant.personalDetails.firstName} {constant.personalDetails.lastName}</span>
                                 </div>
                                 <p className=" hidden right-5 bottom-5 absolute group-hover:block">Read post →</p>
                             </li>
