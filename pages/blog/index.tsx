@@ -18,16 +18,15 @@ export default function Home({ posts }: any) {
     }
 
     useEffect(() => {
-        setBlogs( posts.filter((post: any) => post.properties.Name.title[0].plain_text.includes(search)));
+        setBlogs(posts.filter((post: any) => post.properties.Name.title[0].plain_text.includes(search)));
     }, [posts, search])
 
     return (
         <div className="bg-gray-950 bg-pattern pb-20 min-h-screen">
             <Head>
-                <title>Rajdeep&apos;s blog</title>
-                <link rel="icon" href="/favicon.ico" />
+                <title>{constant.personalDetails.firstName}&apos;s Blog</title>
+                <meta name="description" content="Started with frontend, built amazing projects using that, moved to backend and fell in love ❤️ with scalable backend architectures 🚀 and cloud ☁️ while playing with AWS, GCP, Azure, Docker 🐳, Kubernetes and terraform." />
             </Head>
-
             <main className=" w-10/12 md:w-7/12 mx-auto pt-10">
                 <h2 className="text-4xl font-bold">All articles</h2>
                 <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
