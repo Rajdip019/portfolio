@@ -8,7 +8,7 @@ Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a th
 Clean up my personal data and prepare the repo.
 
 ```bash
-npm run prepare 
+npm run setup 
 ```
 
 ### Step 2 
