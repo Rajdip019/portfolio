@@ -17,7 +17,7 @@ Install all dependencies :accessibility:
 
 ```
 npm install
-```
+``` 
 
 ### Step 2 ✉️
 
