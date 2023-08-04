@@ -74,4 +74,4 @@ Now start writing blogs on Notion and it will work magically.
 ## Want to contribute to the repo to make it better?? 🔥
 Yooo! Everyone is welcome to cohntribute to this repo and make the bogs and personal website better and better. This could be a small typo fix, design fix to adding some big functionality. Eveything is wecome. Also if you want to make the development and contributing to this repo smoother and better you are welcomes ad well with any suggestion. 
 
-**Just go through this README on how to contribute** : [How to Contribute](()
+**Just go through this README on how to contribute** : [How to Contribute](./CONTRIBUTING.md)
