@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "bash ./scripts/prepare.sh"
+    "setup": "bash ./scripts/prepare.sh"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.8",
