@@ -181,8 +181,6 @@ const renderBlock = (block: { [x: string]: any; id: any; children?: any; type?: 
 export default function Post({ page, blocks }: { page: any, blocks: any }) {
 
   const [readerMode, setReaderMode] = React.useState<number>(0);
-
-  console.log("page" , page);
   
   if (!page || !blocks) {
     return <div />;
