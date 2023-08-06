@@ -182,6 +182,8 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
 
   const [readerMode, setReaderMode] = React.useState<number>(0);
 
+  console.log("page" , page);
+  
   if (!page || !blocks) {
     return <div />;
   }
@@ -194,7 +196,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
       </Head>
       {!!page.cover && (
         <div className="h-48 md:h-64">
-          <img src={page.cover?.external.url} alt="" className="h-48 md:h-64 w-screen" />
+          <img src={page.cover?.external?.url ? page.cover?.external?.url : page.cover?.file?.url} alt="" className="h-48 md:h-64 w-screen" />
         </div>
       )}
       <article className=" w-10/12 md:w-8/12 mx-auto pt-10">
