@@ -250,6 +250,18 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
+  const apiUrl = `https://dev.to/api/articles/${id}`;
+
+  const response = await axios.get(apiUrl);
+
+  if(response.status === 200) {
+    const data = response.data;
+    await axios.put(`${process.env.YOUR_API_URL}/${id}`, {data}
+    );
+  } else {
+    await axios.get(`${process.env.YOUR_API_URL}/${id}`);
+  }
+
   return {
     props: {
       page,
