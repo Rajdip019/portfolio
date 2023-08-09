@@ -17,8 +17,8 @@ export const GET = async (req: Request, res: Response) => {
             coverImageUrl: linkedPage.cover.external.url,
             tags: linkedPage.properties['Tags'].multi_select.map((tag : any) => tag.name)
         });
-        createDevToBlog(formattedResponse[0]);
-        return NextResponse.json({message:"Success",post:formattedResponse},{status:200});
+        const response_publish = createDevToBlog(formattedResponse[0]);
+        return NextResponse.json({message:"Success",post:formattedResponse, details: response_publish},{status:200});
     } catch (error:any) {
         NextResponse.json({message:"Error",error},{status:500});
     }
@@ -38,10 +38,10 @@ export const PUT = async (req: Request, res: Response) => {
             content: contentMarkdown,
             coverImageUrl: linkedPage.cover.external.url,
             tags: linkedPage.properties['Tags'].multi_select.map((tag : any) => tag.name),
-            id: linkedPageId
+            id: req.body?.id
         });
-        createDevToBlog(formattedResponse[0]);
-        return NextResponse.json({message:"Success",post:formattedResponse},{status:200});
+        const response_publish = createDevToBlog(formattedResponse[0]);
+        return NextResponse.json({message:"Success",post:formattedResponse, details: response_publish},{status:200});
     } catch (error:any) {
         NextResponse.json({message:"Error",error},{status:500});
     }

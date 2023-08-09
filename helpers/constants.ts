@@ -1,14 +1,14 @@
 export const constant = {
   personalDetails: {
-    firstName: "Rajdeep",
-    lastName: "Sengupta",
-    email: "rajdipgupta019@gmail.com",
+    firstName: "Your",
+    lastName: "Name",
+    email: "test@gmail.com",
     picture: "/profile-pic.jpeg",
     website: "https://rajdeep.vercel.app", // Use https here
     linkedin: "https://www.linkedin.com/in/rajdeep-sengupta/",
     github: "https://github.com/Rajdip019",
     twitter: "https://twitter.com/RajdeepS019",
-    resume : "https://drive.google.com/file/d/14ttjRc7Rv9rRRzgemwG6yzoiWBIKdc6C/view?usp=sharing"
+    resume : "resume link here"
   },
   technologiesAndLanguages: [
     {

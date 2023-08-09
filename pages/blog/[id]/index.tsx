@@ -9,6 +9,8 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Text } from "@/components/Shared/NotionText";
 import React from "react";
 import { constant } from "@/helpers/constants";
+import { notion } from "../../../lib/notion";
+import axios from "axios";
 
 const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   const { type } = block;
@@ -250,17 +252,30 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
-  const apiUrl = `https://dev.to/api/articles/${id}`;
+  if(page.properties.DevToPublish.checkbox === true) {
+
+  const ID:number = page.properties.DevToId.number;
+
+  const apiUrl = `https://dev.to/api/articles/${ID?ID:id}`;
 
   const response = await axios.get(apiUrl);
 
   if(response.status === 200) {
     const data = response.data;
-    await axios.put(`${process.env.YOUR_API_URL}/${id}`, {data}
+    await axios.put(`${process.env.YOUR_SITE_URL}/${id}`, {...data}
     );
   } else {
-    await axios.get(`${process.env.YOUR_API_URL}/${id}`);
+    const details = await axios.get(`${process.env.YOUR_SITE_URL}/${id}`);
+    const publish_DevTo_Id = await notion.pages.update({
+      page_id: id,
+      properties: {
+        'DevToID' : {
+          number: parseInt(details.details.id)
+        },
+      }
+    });
   }
+}
 
   return {
     props: {

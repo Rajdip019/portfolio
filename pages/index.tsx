@@ -1,7 +1,4 @@
-import About from '@/components/Home/About'
-import Experiences from '@/components/Home/Experiences'
 import RecentBlogs from '@/components/Home/RecentBlogs'
-import TechStack from '@/components/Home/TechStack'
 import { GetStaticProps } from 'next/types'
 import React from 'react'
 import { getDatabase } from '@/lib/notion'
@@ -18,9 +15,7 @@ const Home = ( { posts } : any) => {
     </Head>
     <div className='bg-pattern min-h-screen bg-gray-950'>
       <div className=' w-10/12 md:w-8/12 mx-auto py-10 ' >
-        <About />
-        <TechStack />
-        <Experiences />
+        <div className=' text-center my-20 text-5xl font-semibold'>Show your Creativity here...</div>
         <RecentBlogs posts={posts} />
       </div>
     </div>
