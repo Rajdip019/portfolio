@@ -1,15 +1,15 @@
-import { getBlocks, getPage, createDevToBlog } from "@/lib/notion";
-import { convertToMarkdown } from "@/lib/markdown";
+import { getBlocks, getPage, createDevToBlog, getBlocksPage } from "@/lib/notion";
+import { convertToMarkdownNew } from "@/lib/notion";
 import { NextResponse } from "next/server";
 
 export const GET = async (req: Request, res: Response) => {
     try{
         const formattedResponse = [];
-        const linkedPageId = req.query.id;
-        const linkedPageResponse = await getBlocks(linkedPageId as string);
+        const linkedPageId = req.url.split('devToBlogs/')[1];
+        const linkedPageResponse = await getBlocksPage(linkedPageId as string);
         const linkedPage = await getPage(linkedPageId as string);
-        const contentMarkdown = linkedPageResponse.map((block: any) => {
-            convertToMarkdown(block).join("\n");
+        const contentMarkdown = linkedPageResponse.results.map((block: any) => {
+            convertToMarkdownNew(block).join("\n");
         });
         formattedResponse.push({
             title: linkedPage.properties.Name.title[0].plain_text,
@@ -27,11 +27,11 @@ export const GET = async (req: Request, res: Response) => {
 export const PUT = async (req: Request, res: Response) => {
     try{
         const formattedResponse = [];
-        const linkedPageId = req.query.id;
-        const linkedPageResponse = await getBlocks(linkedPageId as string);
+        const linkedPageId = req.url.split('devToBlogs/')[1];
+        const linkedPageResponse = await getBlocksPage(linkedPageId as string);
         const linkedPage = await getPage(linkedPageId as string);
-        const contentMarkdown = linkedPageResponse.map((block: any) => {
-            convertToMarkdown(block).join("\n");
+        const contentMarkdown = linkedPageResponse.results.map((block: any) => {
+            convertToMarkdownNew(block).join("\n");
         });
         formattedResponse.push({
             title: linkedPage.properties.Name.title[0].plain_text,

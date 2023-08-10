@@ -254,17 +254,35 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
 
   if(page.properties.DevToPublish.checkbox === true) {
 
-  const ID:number = page.properties.DevToId.number;
+    try{
+     const ID:number = page.properties.DevToId.number;
 
-  const apiUrl = `https://dev.to/api/articles/${ID?ID:id}`;
+     console.log(`${ID?ID:id}`);
 
-  const response = await axios.get(apiUrl);
+     const apiUrl = `https://dev.to/api/articles/${ID?ID:id}`;
+
+     console.log(apiUrl);
+
+      const response = await axios.get(apiUrl);
+
+      console.log(response);
 
   if(response.status === 200) {
     const data = response.data;
     await axios.put(`${process.env.YOUR_SITE_URL}/${id}`, {...data}
     );
   } else {
+    const details = await axios.get(`${process.env.YOUR_SITE_URL}/${id}`);
+    const publish_DevTo_Id = await notion.pages.update({
+      page_id: id,
+      properties: {
+        'DevToID' : {
+          number: parseInt(details.details.id)
+        },
+      }
+    });
+   }
+  } catch(error) {
     const details = await axios.get(`${process.env.YOUR_SITE_URL}/${id}`);
     const publish_DevTo_Id = await notion.pages.update({
       page_id: id,

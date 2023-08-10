@@ -1,4 +1,5 @@
 import { Client } from "@notionhq/client";
+import axios from "axios";
 
 export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -15,6 +16,13 @@ export const getPage = async (pageId : string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 };
+
+export const getBlocksPage = async (linkedPageId: string) => {
+  const response = await notion.blocks.children.list({
+    block_id: linkedPageId,
+  });
+  return response;
+}
 
 export const getBlocks = async (blockId : string) => {
   blockId = blockId.replaceAll("-", "");
@@ -70,56 +78,56 @@ function getRandomInt(min :  number, max : number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const renderNestedListMarkdown = (block: { [x: string]: any; type?: any; }) => {
+const renderNestedListMarkdown = (block:any) => {
   const { type } = block;
   const value = block[type];
 
   if (!value) return "";
 
-  const isNumberedList = value.children[0].type === "numbered_list_item";
+  const isNumberedList = value.children?.type === "numbered_list_item";
   const listType = isNumberedList ? "ol" : "ul";
 
-  return value.children
-    .map((child:any) => {
+  return value.children?.map((child:any) => {
       const listItemText = child.numbered_list_item || child.bulleted_list_item;
       if (listItemText) {
-        return `  - ${listItemText.rich_text[0].plain_text}\n${convertToMarkdown(child)}`;
+        return `  - ${convertToMarkdown(listItemText.rich_text)}\n${convertToMarkdownNew(child)}`;
       }
       return "";
     })
     .join("");
 };
 
-export const convertToMarkdown = (block: { [x: string]: any; id: any; children?: any; type?: any; }) => {
+function convertToMarkdown(richText:any) {
+  return richText.map((textObj:any) => textObj.text.content).join('');
+}
+
+export const convertToMarkdownNew = (block:any) => {
   const { type } = block;
   const value = block[type];
 
   switch (type) {
     case "paragraph":
-      return `${value.rich_text}\n\n`;
+      return `${convertToMarkdown(value.rich_text)}\n\n`;
     case "heading_1":
-      return `# ${value.rich_text}\n\n`;
+      return `# ${convertToMarkdown(value.rich_text)}\n\n`;
     case "heading_2":
-      return `## ${value.rich_text}\n\n`;
+      return `## ${convertToMarkdown(value.rich_text)}\n\n`;
     case "heading_3":
-      return `### ${value.rich_text}\n\n`;
+      return `### ${convertToMarkdown(value.rich_text)}\n\n`;
     case "bulleted_list":
     case "numbered_list":
-      return value.children
-        .map((child:any) => convertToMarkdown(child))
+      return value.children?.map((child:any) => convertToMarkdownNew(child))
         .join("");
     case "bulleted_list_item":
     case "numbered_list_item":
-      return `- ${value.rich_text}\n${renderNestedListMarkdown(block)}`;
+      return `- ${convertToMarkdown(value.rich_text)}\n${renderNestedListMarkdown(block)}`;
     case "to_do":
-      return `- [${value.checked ? "x" : " "}] ${value.rich_text}\n`;
+      return `- [${value.checked ? "x" : " "}] ${convertToMarkdown(value.rich_text)}\n`;
     case "toggle":
-      return `**${value.rich_text}**\n${block.children
-        .map((child:any) => convertToMarkdown(child))
+      return `**${convertToMarkdown(value.rich_text)}**\n${block.children?.map((child:any) => convertToMarkdownNew(child))
         .join("")}`;
     case "child_page":
-      return `**${value.title}**\n${block.children
-        .map((child:any) => convertToMarkdown(child))
+      return `**${value.title}**\n${block.children?.map((child:any) => convertToMarkdownNew(child))
         .join("")}`;
     case "image":
       const src = value.type === "external" ? value.external.url : value.file.url;
@@ -128,9 +136,9 @@ export const convertToMarkdown = (block: { [x: string]: any; id: any; children?:
     case "divider":
       return "---\n\n";
     case "quote":
-      return `> ${value.rich_text[0].plain_text}\n\n`;
+      return `> ${convertToMarkdown(value.rich_text)}\n\n`;
     case "code":
-      return `\`\`\`${value.language}\n` + value.rich_text[0].plain_text + "\n```\n\n";
+      return `\`\`\`${value.language}\n` + convertToMarkdown(value.rich_text) + "\n```\n\n";
     case "file":
       const srcFile = value.type === "external" ? value.external.url : value.file.url;
       const captionFile = value.caption ? value.caption[0]?.plain_text : "";
@@ -138,16 +146,13 @@ export const convertToMarkdown = (block: { [x: string]: any; id: any; children?:
     case "bookmark":
       return `[${value.url}](${value.url})\n\n`;
     case "table":
-      return value.children
-        .map((child:any) => convertToMarkdown(child))
+      return value.children?.map((child:any) => convertToMarkdownNew(child))
         .join("");
     case "column_list":
-      return block.children
-        .map((child:any) => convertToMarkdown(child))
+      return block.children?.map((child:any) => convertToMarkdownNew(child))
         .join("");
     case "column":
-      return block.children
-        .map((child:any) => convertToMarkdown(child))
+      return block.children?.map((child:any) => convertToMarkdownNew(child))
         .join("");
     default:
       return `❌ Unsupported block (${type === "unsupported" ? "unsupported by Notion API" : type})\n\n`;
