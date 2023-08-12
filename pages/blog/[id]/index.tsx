@@ -13,6 +13,8 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Code from "@/components/Code";
+import axios from "axios";
+import notion from "../../../lib/notion";
 
 const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   const { type } = block;
@@ -252,6 +254,48 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
+  if(page.properties.DevToPublish.checkbox === true) {
+
+    try{
+     const ID:number = page.properties.DevToId.number;
+
+     console.log(`${ID?ID:id}`);
+
+     const apiUrl = `https://dev.to/api/articles/${ID?ID:id}`;
+
+     console.log(apiUrl);
+
+      const response = await axios.get(apiUrl);
+
+      console.log(response);
+
+  if(response.status === 200) {
+    const data = response.data;
+    await axios.put(`${process.env.YOUR_SITE_URL}/${id}`, {...data}
+    );
+  } else {
+    const details = await axios.get(`${process.env.YOUR_SITE_URL}/${id}`);
+    const publish_DevTo_Id = await notion.pages.update({
+      page_id: id,
+      properties: {
+        'DevToID' : {
+          number: parseInt(details.details.id)
+        },
+      }
+    });
+   }
+  } catch(error) {
+    const details = await axios.get(`${process.env.YOUR_SITE_URL}/${id}`);
+    const publish_DevTo_Id = await notion.pages.update({
+      page_id: id,
+      properties: {
+        'DevToID' : {
+          number: parseInt(details.details.id)
+        },
+      }
+    });
+  }
+}
   return {
     props: {
       page,
