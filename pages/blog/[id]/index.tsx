@@ -9,6 +9,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Text } from "@/components/Shared/NotionText";
 import React from "react";
 import { constant } from "@/helpers/constants";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Code from "@/components/Code";
 
 const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   const { type } = block;
@@ -23,7 +27,7 @@ const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   return <ul>{value.children.map((block: any) => renderBlock(block))}</ul>;
 };
 
-const renderBlock = (block: { [x: string]: any; id: any; children?: any; type?: any; }) => {
+const renderBlock = (block: { [x: string]: any; id: any; children?: any; type?: any; }, readerMode?: number) => {
   const { type, id } = block;
   const value = block[type];
 
@@ -109,11 +113,9 @@ const renderBlock = (block: { [x: string]: any; id: any; children?: any; type?: 
       return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
     case "code":
       return (
-        <pre className={styles.pre}>
-          <code className={styles.code_block} key={id}>
-            {value.rich_text[0].plain_text}
-          </code>
-        </pre>
+        <div id={id}>
+          <Code value={value} readerMode={readerMode} />
+        </div>
       );
     case "file":
       const src_file =
@@ -194,7 +196,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
       </Head>
       {!!page.cover && (
         <div className="h-48 md:h-64">
-          <img src={page.cover?.external.url} alt="" className="h-48 md:h-64 w-screen" />
+          <img src={page.cover?.external?.url ? page.cover?.external?.url : page.cover?.file?.url} alt="" className="h-48 md:h-64 w-screen" />
         </div>
       )}
       <article className=" w-10/12 md:w-8/12 mx-auto pt-10">
@@ -229,7 +231,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
         <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
         <section>
           {blocks.map((block: any) => (
-            <div key={block.id} className=" my-5">{renderBlock(block)}</div>
+            <div key={block.id} className=" my-5">{renderBlock(block, readerMode)}</div>
           ))}
         </section>
       </article>

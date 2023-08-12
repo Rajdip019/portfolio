@@ -8,7 +8,7 @@ Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a th
 Clean up my personal data and prepare the repo. ( If you want to contribute go to CONTIBUTING.md )
 
 ```bash
-npm run prepare 
+npm run setup 
 ```
 
 ### Step 2 
@@ -70,6 +70,7 @@ npm run dev
 Now start writing blogs on Notion and it will work magically.  
 
 <br />
+
 ## Want to contribute to the repo to make it better?? 🔥
 Yooo! Everyone is welcome to cohntribute to this repo and make the bogs and personal website better and better. This could be a small typo fix, design fix to adding some big functionality. Eveything is wecome. Also if you want to make the development and contributing to this repo smoother and better you are welcomes ad well with any suggestion. 
 

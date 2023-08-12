@@ -17,7 +17,7 @@ Install all dependencies :accessibility:
 
 ```
 npm install
-```
+``` 
 
 ### Step 2 ✉️
 
@@ -78,3 +78,6 @@ You can raise a PR for everything. From suggestions to improve workflow to addin
 
 ## Raising a PR :
 If you are raising a PR make sure it's not a duplicate one and always target your PR to **`stage`** branch.
+
+#### Naming your branch 
+Naming your branch is a important thing to later track down if any issue occurs. Use this pattern `<github-username>/feature` while naming your branch.
