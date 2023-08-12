@@ -5,7 +5,7 @@ Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a th
 
 ### Step 1 : ⏬
 
-Clean up my personal data and prepare the repo.
+Clean up my personal data and prepare the repo. ( If you want to contribute go to CONTIBUTING.md )
 
 ```bash
 npm run setup 
