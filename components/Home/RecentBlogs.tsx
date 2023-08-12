@@ -20,7 +20,7 @@ const RecentBlogs: React.FC<Props> = ({ posts }: any) => {
         <section className='mt-10 '>
             <div className=' flex justify-between items-center'>
                 <h1 className='text-2xl font-semibold text-gray-200'>Recent Blogs</h1>
-                <Link href={'/blogs'} className=' hover:underline underline-offset-4'>View all</Link>
+                <Link href={'/blog'} className=' hover:underline underline-offset-4'>View all</Link>
             </div>
             <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
             <ol className="">
