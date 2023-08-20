@@ -13,6 +13,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Code from "@/components/Code";
+import notion from "../../../lib/notion";
 
 const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
   const { type } = block;
@@ -251,6 +252,52 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
   const { id } = context.params;
   const page = await getPage(id);
   const blocks = await getBlocks(id);
+
+  const { href: currentUrl, pathname } = useUrl() ?? {};
+
+  if(page.properties.DevToPublish.checkbox === true) {
+
+    try{
+     const ID:number = page.properties.DevToId.number;
+
+     console.log(`${ID?ID:id}`);
+
+     const apiUrl = `https://dev.to/api/articles/${ID?ID:id}`;
+
+     console.log(apiUrl);
+
+     const response = await fetch(apiUrl);
+
+     const post = await response.json()
+
+     console.log(post);
+
+  if(post.status === 200) {
+    const data = post.data;
+    await fetch(`${currentUrl}/api/post/${id}`, {
+      method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+  } else {
+    const details = await fetch(`${currentUrl}/api/post/${id}`);
+    const FullDetails = await details.json()
+    const publish_DevTo_Id = await notion.pages.update({
+      page_id: id,
+      properties: {
+        'DevToID' : {
+          number: parseInt(FullDetails.details.id)
+        },
+      }
+    });
+   }
+  } catch(error:any) {
+    console.error('Some unexpected error occured: ', error.message);
+    throw new Error('Failed to create blog post with code: ', error.response.status);
+  }
+}
 
   return {
     props: {

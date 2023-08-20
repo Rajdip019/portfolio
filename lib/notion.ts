@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 
-const notion = new Client({
+export const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
@@ -15,6 +15,13 @@ export const getPage = async (pageId : string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 };
+
+export const getBlocksPage = async (linkedPageId: string) => {
+  const response = await notion.blocks.children.list({
+    block_id: linkedPageId,
+  });
+  return response;
+}
 
 export const getBlocks = async (blockId : string) => {
   blockId = blockId.replaceAll("-", "");
@@ -68,4 +75,61 @@ function getRandomInt(min :  number, max : number) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+interface DevToPost {
+  title: string;
+  content: string;
+  tags: string;
+  coverImageUrl: string;
+  id?: string;
+};
+
+export const createDevToBlog = async ({title, content, tags, coverImageUrl,id}:DevToPost) => {
+  try {
+    if(id){
+      const response = await fetch(`https://dev.to/api/articles/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': `${process.env.DEV_TO_API_KEY}`,
+          },
+          body: JSON.stringify({
+            article: {
+              title: title,
+              published: true,
+              body_markdown: content,
+              tags: tags,
+              coverImageUrl: coverImageUrl,
+              series: 'Notion To Dev To'
+            },
+          }),
+        })
+        const post = await response.json()
+        return post
+    } else {
+      const response = await fetch(`https://dev.to/api/articles`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': `${process.env.DEV_TO_API_KEY}`,
+          },
+          body: JSON.stringify({
+            article: {
+              title: title,
+              published: true,
+              body_markdown: content,
+              tags: tags,
+              coverImageUrl: coverImageUrl,
+              series: 'Notion To Dev To'
+            },
+          }),
+        })
+      const post = await response.json();
+      return post
+    }
+  } catch(err:any){
+    console.error('Error creating DEV.to blog post:', err.message);
+    throw new Error('Failed to create DEV.to blog post with code :', err.response.status);
+  }
 }
