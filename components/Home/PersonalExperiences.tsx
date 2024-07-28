@@ -2,13 +2,32 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { constant } from '@/helpers/constants'
+import { motion, useInView } from 'framer-motion'
 
-const Experiences = () => {
+const PersonalExperiences = () => {
 
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
+    
     return (
-        <section className=' flex flex-col items-center md:block'>
-            <h1 className=' text-2xl font-semibold mt-10 text-gray-200 text-center md:text-left mb-2'>Want to know more abut me ?</h1>
-            <span className='text-[#D5D5D5] text-center '>Want to know about my Work Experiences? Achievements?  How I became the youngest speaker at Microsoft Cosmos DB International Conf&apos;22 or how many hackathons I have won? This is the best place to visit</span>
+        <motion.section
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: isInView ? 1 : 0, y: 0 }}
+            transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+            }}
+            className=' my-32 flex flex-col items-center md:block'>
+            <h1 className=' text-2xl font-semibold mt-10 text-gray-200 text-center md:text-left mb-2'>Any personal achievement ?</h1>
+            <ul className=' list-disc text-gray-200 mb-5'>
+                <li>Top 8 in India Microsoft Imagine Cup. (2022)</li>
+                <li>Won multiple Hackathons along with Winner of Ethos Hackathon. (North India&apos;s largest hackathon - 2023 )</li>
+                <li>Youngest speaker at Azure Cosmos DB Cloud Conference (2022)</li>
+                <li>Mentor and project Admin in events like Winter of Code, Girl Script, CodePeak, Hacktoberfest and multiple Hackathon like HackNITR.</li>
+                <li>Speaker at College Google Developer Student Club and multiple local Dev Conferences.</li>
+            </ul>
+            <span className='text-[#D5D5D5] text-center '>Want to know about my Work Achievements?  How I became the youngest speaker at Microsoft Cosmos DB International Conf&apos;22 or how many hackathons I have won? This is the best place to visit</span>
             <a href={constant.personalDetails.linkedin} target="_blank" rel="noopener noreferrer" className=' ml-2 inline-flex gap-2 items-center underline underline-offset-4 text-blue-400'>
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     width="16" height="16" viewBox="0 0 192 192">
@@ -24,8 +43,8 @@ const Experiences = () => {
                 </svg>
                 <span className=' font-semibold text-blue-500'>LinkedIn</span>
             </a>{' '} <span className=' hidden md:inline-block'>.</span>
-        </section>
+        </motion.section>
     )
 }
 
-export default Experiences
+export default PersonalExperiences
