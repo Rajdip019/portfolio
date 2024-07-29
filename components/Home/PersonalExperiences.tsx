@@ -19,7 +19,7 @@ const PersonalExperiences = () => {
                 ease: "easeInOut",
             }}
             className=' my-32 flex flex-col md:items-center md:block'>
-            <h1 className=' text-2xl font-semibold mt-10 text-gray-200 text-center md:text-left mb-2'>Any personal achievement ?</h1>
+            <h1 className=' text-2xl font-semibold mt-10 text-gray-200 text-center md:text-left mb-8'>Any personal achievement ?</h1>
             <ul className='text-gray-200 mb-5 flex flex-col gap-3'>
                 <li>✨ Top 8 in India Microsoft Imagine Cup. (2022)</li>
                 <li>🏆 Won multiple Hackathons along with Winner of Ethos Hackathon. ( North India&apos;s largest hackathon - 2023 )</li>
