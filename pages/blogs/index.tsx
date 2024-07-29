@@ -20,14 +20,14 @@ export default function Home({ posts }: any) {
     }
 
     useEffect(() => {
-        setBlogs(posts.filter((post: any) => post.properties.Name.title[0].plain_text.includes(search)));
+        setBlogs(posts.filter((post: any) => post.properties.Name.title[0].plain_text.toLowerCase().includes(search.toLowerCase())));
     }, [posts, search]);
 
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
 
     return (
-        <div className="bg-gray-950 bg-pattern pb-20 min-h-screen">
+        <div className="pb-20 min-h-screen">
             <Head>
                 <title>{constant.personalDetails.firstName}&apos;s Blog</title>
                 <meta name="description" content="Started with frontend, built amazing projects using that, moved to backend and fell in love ❤️ with scalable backend architectures 🚀 and cloud ☁️ while playing with AWS, GCP, Azure, Docker 🐳, Kubernetes and terraform." />
@@ -41,9 +41,10 @@ export default function Home({ posts }: any) {
                     ease: "easeInOut",
                 }}
                 className=" w-10/12 md:w-8/12 mx-auto pt-10">
-                <h2 className="text-4xl font-bold">All articles</h2>
-                <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
-                <input type="text" className=" w-full py-2 px-4 bg-slate-800 border border-black rounded text-lg" placeholder="Search for blogs" onChange={(e) => setSearch(e.target.value)} />
+                    <div className=" flex mb-8 items-center">
+                        <h2 className="text-3xl font-bold text-gray-300 w-full">All articles</h2>
+                        <input type="text" className=" w-full py-2 px-4 bg-black border border-gray-800 rounded text-lg" placeholder="Search for blogs" onChange={(e) => setSearch(e.target.value)} />
+                    </div>
                 <ol className="">
                     {blogs.filter((blog: any) => blog.properties.Published.checkbox === true).length === 0 && (<p className="text-2xl text-center mt-20">No search results found {': ('}</p>)}
                     {blogs.filter((blog: any) => blog.properties.Published.checkbox === true)?.map((blog: any) => {
@@ -56,8 +57,8 @@ export default function Home({ posts }: any) {
                             }
                         );
                         return (
-                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 transition-all cursor-pointer group relative">
-                                <h3 className=" text-xl md:text-2xl font-semibold md:group-hover:text-[1.7rem] transition-all">
+                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 text-gray-300 transition-all cursor-pointer group relative">
+                                <h3 className=" text-lg md:text-xl font-semibold md:group-hover:text-[1.7rem] transition-all">
                                     <Text text={blog.properties.Name.title} />
                                 </h3>
                                 <div className=" flex items-center text-sm gap-2 my-2">

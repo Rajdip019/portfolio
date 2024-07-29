@@ -3,7 +3,7 @@ import { Fragment, Key } from "react";
 import Head from "next/head";
 import { getDatabase, getPage, getBlocks } from "../../../lib/notion";
 import Link from "next/link";
-import { databaseId } from "..";
+import { databaseId } from "../../blogs";
 import styles from "./post.module.css";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { Text } from "@/components/Shared/NotionText";
@@ -189,7 +189,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
   }
 
   return (
-    <div className={`${readerMode === 1 ? "bg-[#18181F]" : "bg-gray-950 bg-pattern"} pb-20 min-h-screen`}>
+    <div className={`${readerMode === 1 ? "bg-[#18181F]" : ""} pb-20 min-h-screen`}>
       <Head>
         <title>{page.properties.Name.title[0].plain_text}</title>
         <link rel="icon" href="/favicon.ico" />
