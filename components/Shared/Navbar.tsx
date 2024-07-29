@@ -33,7 +33,7 @@ const Navbar = () => {
                         <Link href="/side-projects" className={`${pathname === '/side-projects' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap`}>
                             Side Projects
                         </Link>
-                        <Link href="/blog" className={`${pathname === '/blog' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
+                        <Link href="/blogs" className={`${pathname === '/blogs' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
                             Blog
                         </Link>
                         <Link href="/contact" className={`${pathname === '/contact' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
