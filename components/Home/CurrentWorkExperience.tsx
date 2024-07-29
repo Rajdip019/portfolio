@@ -21,7 +21,7 @@ const CurrentWorkExperience = () => {
         >
             <div className='flex justify-between items-center mt-36 text-gray-300 relative z-50'>
                 <h1 className=' text-2xl font-semibold '>Currently working at ?</h1>
-                <Link href="/work-experiences">See All</Link>
+                <Link href="/work-experiences" className=' hover:scale-105 transition-all'>View All</Link>
             </div>
             <div>
                 <WorkExperienceTile workExp={constant.workExperience[0]} isCurrent={true} />

@@ -24,7 +24,7 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
                             <li>
                                 <div>
                                     <p className='text-gray-200 font-semibold my-0.5'>{workExp.experiences[0].title}</p>
-                                    <div className='flex gap-2'>
+                                    <div className='flex gap-2 flex-col md:flex-row'>
                                         <p className='text-gray-200'>{workExp.experiences[0].startDate} - {workExp.experiences[0].endDate}</p>
                                         <p className='text-gray-200'>( {workExp.experiences[0].location} )</p>
                                     </div>
@@ -38,7 +38,7 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
                                 <li key={index} className={`${workExp.experiences.length > 1 ? 'ml-4 mt-4' : ''}`}>
                                     <div className={`${index > 0 ? 'mt-10' : ''}`}>
                                         <p className=' text-gray-200 font-semibold my-0.5'>{exp.title}</p>
-                                        <div className=' flex gap-2'>
+                                        <div className=' flex gap-2 flex-col md:flex-row'>
                                             <p className=' text-gray-200'>{exp.startDate} - {exp.endDate}</p>
                                             <p className=' text-gray-200'>( {exp.location} )</p>
                                         </div>

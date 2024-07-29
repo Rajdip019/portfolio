@@ -81,8 +81,8 @@ export const constant = {
     {
       title: "Flexauth",
       image: "https://pbs.twimg.com/media/GTftzVFW8AAMDvN?format=jpg&name=4096x4096",
-      description: "Flexauth is a flexible, blazingly fast 🦀, and secure auth system that you can use for your project/company* . Need to add a specific feature as you need? Change the code as you like and deploy it on your servers.",
-      link: "https://flerxauth.vercel.app",
+      description: "Flexauth is a flexible, blazingly fast 🦀, and secure in house auth system that you can use for your project/company. Setup and deploy it on your servers.",
+      link: "https://flexauth.vercel.app",
       techstack: ["Rust", "Axum", "Tokio", "MongoDB", "JWT"]
     }, 
     {
@@ -115,7 +115,7 @@ export const constant = {
     },
     {
       title: "Medorant",
-      image: "",
+      image: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L25zMTQ2NTEtaW1hZ2Uta3d2eWQybmIuanBn.jpg",
       description: "A app to scan and tell if a medicine is counter-fit for you or not.",
       link: "https://devfolio.co/projects/medorant-8690",
       techstack: ["AWS", "Javascript", "Lambda", "API Gateway"]

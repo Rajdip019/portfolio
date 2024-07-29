@@ -5,6 +5,8 @@ import { GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { constant } from "@/helpers/constants";
 import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
+import React from "react";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
@@ -19,7 +21,10 @@ export default function Home({ posts }: any) {
 
     useEffect(() => {
         setBlogs(posts.filter((post: any) => post.properties.Name.title[0].plain_text.includes(search)));
-    }, [posts, search])
+    }, [posts, search]);
+
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     return (
         <div className="bg-gray-950 bg-pattern pb-20 min-h-screen">
@@ -27,7 +32,15 @@ export default function Home({ posts }: any) {
                 <title>{constant.personalDetails.firstName}&apos;s Blog</title>
                 <meta name="description" content="Started with frontend, built amazing projects using that, moved to backend and fell in love ❤️ with scalable backend architectures 🚀 and cloud ☁️ while playing with AWS, GCP, Azure, Docker 🐳, Kubernetes and terraform." />
             </Head>
-            <main className=" w-10/12 md:w-7/12 mx-auto pt-10">
+            <motion.section
+                ref={ref}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: isInView ? 1 : 0, y: 0 }}
+                transition={{
+                    duration: 0.8,
+                    ease: "easeInOut",
+                }}
+                className=" w-10/12 md:w-8/12 mx-auto pt-10">
                 <h2 className="text-4xl font-bold">All articles</h2>
                 <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
                 <input type="text" className=" w-full py-2 px-4 bg-slate-800 border border-black rounded text-lg" placeholder="Search for blogs" onChange={(e) => setSearch(e.target.value)} />
@@ -56,7 +69,7 @@ export default function Home({ posts }: any) {
                         );
                     })}
                 </ol>
-            </main>
+            </motion.section>
         </div>
     );
 }

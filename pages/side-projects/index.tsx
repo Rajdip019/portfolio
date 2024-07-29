@@ -1,39 +1,33 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-
-import React from 'react'
-import { PinContainer } from '../ui/3d-pin'
-import { constant } from '@/helpers/constants';
-import Link from 'next/link';
+import { PinContainer } from '@/components/ui/3d-pin'
+import { constant } from '@/helpers/constants'
 import { motion, useInView } from 'framer-motion';
+import React from 'react'
 
 const SideProjects = () => {
 
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
-    
+
     return (
-        <motion.div 
-        ref={ref}
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: isInView ? 1 : 0, y: 0 }}
-        transition={{
-            duration: 0.8,
-            ease: "easeInOut",
-        }}
-        className='mb-32'>
-            <div className=' flex justify-between'>
-                <h2 className='text-2xl font-semibold text-gray-200 text-center md:text-left'>Side Projects</h2>
-                <Link href="/side-projects" className=' hover:scale-105 transition-all'>View all</Link>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3'>
-                {constant.sideProjects.slice(0,3).map((project, index) => (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: isInView ? 1 : 0, y: 0 }}
+            transition={{
+                duration: 0.8,
+                ease: "easeInOut",
+            }}
+            className='mb-20 mt-10 w-10/12 md:w-8/12 mx-auto min-h-screen'>
+            <h2 className='text-2xl font-semibold text-gray-200 text-center md:text-left mb-5'>Side Projects</h2>
+            <div className='grid grid-cols-1 md:gap-10 md:grid-cols-2'>
+                {constant.sideProjects.map((project, index) => (
                     <div key={index} className=' relative z-10'>
                         <PinContainer
                             title={project.title}
                             href={project.link}
                         >
-                            <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[18rem] h-[19rem] ">
+                            <div className="flex flex-col p-4 tracking-tight text-slate-100/50 w-[18rem] h-[18rem] md:w-[25rem] 2xl:w-[28rem] md:h-[24rem] md:-mb-5">
                                 <h3 className="!pb-2 !m-0 font-semibold text-base text-slate-300">
                                     {project.title}
                                 </h3>

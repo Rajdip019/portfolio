@@ -22,11 +22,10 @@ const RecentBlogs: React.FC<Props> = ({ posts }: any) => {
 
     return (
         <section className='mt-16 mb-20 '>
-            <div className=' flex justify-between items-center'>
+            <div className=' flex justify-between items-center mb-5'>
                 <h1 className='text-2xl font-semibold text-gray-200'>Recent Blogs</h1>
-                <Link href={'/blog'} className=' hover:underline underline-offset-4'>View all</Link>
+                <Link href={'/blog'} className=' hover:scale-105 transition-all'>View all</Link>
             </div>
-            <div className=" bg-gray-700 w-full h-0.5 my-5"></div>
             <ol className="">
                 {posts?.filter((post: any) => post.properties.Published.checkbox === true).length === 0 && (<p className="text-2xl text-center mt-20">No recent blogs found {': ('}</p>)}
                 {posts?.filter((post: any) => post.properties.Published.checkbox === true)?.slice(0, 3).map((post: any, index: number) => {
