@@ -11,13 +11,13 @@ const TechStack = () => {
   return (
     <motion.section
       ref={ref}
-      className='bg-gradient-to-b from-black to-transparent -mt-72'
+      className='bg-gradient-to-b from-black to-transparent'
       initial={{ opacity: 0 }}
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ delay: 1, duration: 1 }}
     >
       {/* <h1 className=' -mt-60 text-2xl font-semibold text-gray-200 text-center md:text-left'>My daily work includes</h1> */}
-      <div className=' flex flex-wrap gap-4 mt-3 justify-center'>
+      <div className=' flex flex-wrap gap-4 mt-3'>
         {constant.technologiesAndLanguages?.map((tech, index) => (
           <div key={index} className=' flex items-center gap-3 mt-1.5'>
             <img src={tech.icon} alt="" className=' w-6' />

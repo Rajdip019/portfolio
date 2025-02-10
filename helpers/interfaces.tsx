@@ -6,7 +6,7 @@ export interface IWorkExperience {
         title: string;
         startDate: string;
         endDate: string;
-        description: string;
+        description: string[];
         location: string;
     }[];
 }

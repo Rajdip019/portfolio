@@ -29,7 +29,7 @@ const RecentBlogs: React.FC<Props> = ({ posts }: any) => {
             <ol className="">
                 {posts?.filter((post: any) => post.properties.Published.checkbox === true).length === 0 && (<p className="text-2xl text-center mt-20">No recent blogs found {': ('}</p>)}
                 {posts?.filter((post: any) => post.properties.Published.checkbox === true)?.slice(0, 3).map((post: any, index: number) => {
-                    const date = new Date(post.last_edited_time).toLocaleString(
+                    const date = new Date(post.created_time).toLocaleString(
                         "en-US",
                         {
                             month: "short",
@@ -43,12 +43,17 @@ const RecentBlogs: React.FC<Props> = ({ posts }: any) => {
                             initial={{ opacity: 0, translateY: 0 }}
                             animate={isInView ? { opacity: 1, translateY: 0 } : { opacity: 0, translateY: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.2, ease: 'easeOut' }}
-                            key={post.id} onClick={() => handleRoute(post.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 hover:scale-105 transition-all cursor-pointer group relative">
+                            key={post.id} onClick={() => handleRoute(post.id)} className=" bg-black my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 hover:scale-105 transition-all cursor-pointer group relative">
                             <h3 className=" text-lg font-semibold group-hover:text-xl transition-all">
                                 <Text text={post.properties.Name.title} />
                             </h3>
                             <div className=" flex items-center text-sm gap-2 my-2">
                                 <p>Published on : {date}</p>
+                            </div>
+                            <div className=" flex gap-2">
+                                {post.properties?.Tags?.multi_select?.map((tag: any) => (
+                                    <span key={tag.id} className=" bg-gray-800 px-2 py-1 text-xs rounded-md">{tag.name}</span>
+                                ))}
                             </div>
                             <p className=" hidden right-5 bottom-5 absolute group-hover:block">Read post →</p>
                         </motion.li>
