@@ -22,19 +22,19 @@ const Navbar = () => {
                     ) : (null)}
                     <Link href="/" className=' flex items-center gap-4'>
                     <img src={constant.personalDetails.picture} alt="" className=' w-10 rounded-full' />
-                    <h1 className=' text-xl font-semibold'>{constant.personalDetails.firstName}&apos;s Portfolio</h1>
+                    <h1 className=' text-xl font-semibold'>{constant.personalDetails.firstName} {constant.personalDetails.lastName}</h1>
                     </Link>
                 </div>
                 <div className=' flex flex-col md:flex-row items-center mt-4 md:mt-0 gap-6'>
                     <div className='flex gap-6 '>
                         <Link href="/work-experiences" className={`${pathname === '/work-experiences' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
-                            Experience
+                           Work Experiences
                         </Link>
                         <Link href="/side-projects" className={`${pathname === '/side-projects' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap`}>
                             Side Projects
                         </Link>
                         <Link href="/blogs" className={`${pathname === '/blogs' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
-                            Blog
+                            Blogs
                         </Link>
                         <Link href="/contact" className={`${pathname === '/contact' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
                             Contact

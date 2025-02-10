@@ -11,13 +11,13 @@ interface Props {
 
 const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
     return (
-        <div className='mt-5 bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border transition-all'>
+        <div className='mt-5 bg-black my-3 rounded-lg p-5 border-gray-800 border transition-all'>
             <div className=' flex items-start gap-5'>
                 <img src={workExp.logo} alt="" className='w-14 h-14 rounded-full mt-1' />
                 <div>
                     <Link target="_blank" href={workExp.link} className='flex gap-2 items-center group hover:underline underline-offset-4'>
                         <h2 className='text-xl font-semibold text-gray300'>{workExp.company}</h2>
-                        <FiArrowUpRight className='w-6 h-6 opacity-0 group-hover:opacity-100 transition-all'/>
+                        <FiArrowUpRight className='w-6 h-6 opacity-0 group-hover:opacity-100 transition-all' />
                     </Link>
                     {isCurrent ? (
                         <ul>
@@ -28,7 +28,11 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
                                         <p className='text-gray-200'>{workExp.experiences[0].startDate} - {workExp.experiences[0].endDate}</p>
                                         <p className='text-gray-200'>( {workExp.experiences[0].location} )</p>
                                     </div>
-                                    <p className='mt-2 text-gray-300'>{workExp.experiences[0].description}</p>
+                                    <ul className='mt-4'>
+                                        {workExp.experiences[0].description.map((desc, index) => (
+                                            <li key={index} className='mt-2 text-gray-300 list-disc list-inside'> {desc}</li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </li>
                         </ul>
@@ -42,7 +46,15 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
                                             <p className=' text-gray-200'>{exp.startDate} - {exp.endDate}</p>
                                             <p className=' text-gray-200'>( {exp.location} )</p>
                                         </div>
-                                        <p className='mt-2 text-gray-300'>{exp.description}</p>
+                                        {exp.description.length > 1 ? (
+                                            <ul className='mt-4'>
+                                                {exp.description.map((desc, index) => (
+                                                    <li key={index} className='mt-2 text-gray-300 list-disc list-inside'> {desc}</li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p className='mt-2 text-gray-300'>{exp.description[0]}</p>
+                                        )}
                                     </div>
                                 </li>
                             ))}

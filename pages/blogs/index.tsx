@@ -26,6 +26,9 @@ export default function Home({ posts }: any) {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
 
+    console.log(posts[0]);
+    
+
     return (
         <div className="pb-20 min-h-screen">
             <Head>
@@ -48,7 +51,7 @@ export default function Home({ posts }: any) {
                 <ol className="">
                     {blogs.filter((blog: any) => blog.properties.Published.checkbox === true).length === 0 && (<p className="text-2xl text-center mt-20">No search results found {': ('}</p>)}
                     {blogs.filter((blog: any) => blog.properties.Published.checkbox === true)?.map((blog: any) => {
-                        const date = new Date(blog.last_edited_time).toLocaleString(
+                        const date = new Date(blog.created_time).toLocaleString(
                             "en-US",
                             {
                                 month: "short",
@@ -57,13 +60,18 @@ export default function Home({ posts }: any) {
                             }
                         );
                         return (
-                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-gray-950 my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 text-gray-300 transition-all cursor-pointer group relative">
+                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-black my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 text-gray-300 transition-all cursor-pointer group relative">
                                 <h3 className=" text-lg md:text-xl font-semibold md:group-hover:text-[1.7rem] transition-all">
                                     <Text text={blog.properties.Name.title} />
                                 </h3>
                                 <div className=" flex items-center text-sm gap-2 my-2">
                                     <p>Published on : {date}</p>
                                     <span className=" hidden md:block">by {constant.personalDetails.firstName} {constant.personalDetails.lastName}</span>
+                                </div>
+                                <div className=" flex gap-2">
+                                    {blog.properties?.Tags?.multi_select?.map((tag: any) => (
+                                        <span key={tag.id} className=" bg-gray-800 px-2 py-1 text-xs rounded-md">{tag.name}</span>
+                                    ))}
                                 </div>
                                 <p className=" hidden right-5 bottom-5 absolute group-hover:block">Read post →</p>
                             </li>

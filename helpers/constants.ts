@@ -19,25 +19,24 @@ export const constant = {
       link: "https://chainrisk.cloud",
       experiences: [
         {
-          title: "Lead Cloud and Infrastructure Engineer",
+          title: "Lead Cloud and Infrastructure Engineer", 
           location: "Remote",
           startDate: "Jan 2024",
           endDate: "Present",
-          description: "Working on AWS to build scalable and secure infrastructure for the company. Also working on Docker, Kubernetes and Terraform to manage the infrastructure. Language used: Rust, TypeScript, Python, Solidity."
-        },
-        {
-          title: "Lead Engineer",
-          location: "Remote",
-          startDate: "Feb 2022",
-          endDate: "Sept 2023",
-          description: "Worked on GCP to build scalable and secure infrastructure for the company. Handled a team of 5 engineers. Language used: TypeScript, Golang."
+          description: [
+            "Reduced company cost by 60 times while making the system 40 times faster by utilizing CUDA and Rust.",
+            "Made an automated risk analysis pipeline which handles 6M+ large simulations per day.",
+            "Build AI agents to automate the risk analysis process.",
+            "Made monte calro simulations 16 times faster by parallelizing solidity test case using rust.",
+            "Working on AWS to build scalable and secure infrastructure for the company.",
+          ]
         },
         {
           title: "Software Engineer",
           location: "Remote",
           startDate: "Dec 2022",
-          endDate: "Feb 2023",
-          description: "Worked on GCP to built a bounty and audit platform for the company. Language used: TypeScript, Golang."
+          endDate: "Feb 2022",
+          description: ["Worked on GCP to built a bounty and audit platform for the company. Language used: TypeScript, Golang."]
         }
       ],
     },
@@ -48,10 +47,10 @@ export const constant = {
       experiences: [
         {
           title: "Software Developer Engineer",
-          location: "Kolkata- Office",
+          location: "Kolkata - Office",
           startDate: "Oct 2023",
           endDate: "Jan 2024",
-          description: "Worked on GCP and Firebase to build scalable and secure infrastructure for the company. Reduced the company software running cost from Rs.6000 to under Rs. 50 by making things in house. Language used: TypeScript, Golang."
+          description: ["Worked on GCP and Firebase to build scalable and secure infrastructure for the company. Reduced the company software running cost from Rs.6000 to under Rs. 50 by making things in house. Language used: TypeScript, Golang."]
         }
       ],
     },
@@ -65,14 +64,14 @@ export const constant = {
           location: "Remote",
           startDate: "Dec 2022",
           endDate: "Oct 2023",
-          description: "Worked on frontend and backend to build and launch full fledged features for the company. Also working on GCP to manage the infrastructure. Language used: TypeScript, Golang."
+          description: ["Worked on frontend and backend to build and launch full fledged features for the company. Also working on GCP to manage the infrastructure. Language used: TypeScript, Golang."]
         },
         {
           title: "Software Developer Engineer Intern",
           location: "Remote",
           startDate: "April 2022",
           endDate: "Nov 2023",
-          description: "Worked on frontend and backend to build and launch full fledged features for the company. Language used: TypeScript, Golang."
+          description: ["Worked on frontend and backend to build and launch full fledged features for the company. Language used: TypeScript, Golang."]
         }
       ],
     }
