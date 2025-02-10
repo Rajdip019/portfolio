@@ -22,7 +22,7 @@ const About = () => {
           </div>
           <div className='w-full'>
             <h1 className=' text-3xl font-semibold text-gray-200'>{constant.personalDetails.firstName} {constant.personalDetails.lastName}</h1>
-            <p className=' mt-3 text-[#D5D5D5]'>I just solve real-world engineering problems. Scale systems and reduce infrastructure costs by folds. Focused on building resilient systems that maximize performance and streamline operations. </p>
+            <p className=' mt-5 text-[#D5D5D5] font-normal text-lg'>I just solve real-world engineering problems. Scale systems and reduce infrastructure costs by folds. Focused on building resilient systems that maximize performance and streamline operations. </p>
           </div>
       </motion.div>
   )

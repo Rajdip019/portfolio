@@ -24,7 +24,7 @@ export const constant = {
           startDate: "Jan 2024",
           endDate: "Present",
           description: [
-            "Reduced company cost by 60 times while making the system 40 times faster by utilizing CUDA and Rust.",
+            "Reduced cloud cost by 60 times and made the system 40 times faster by utilizing CUDA and Rust.",
             "Made an automated risk analysis pipeline which handles 6M+ large simulations per day.",
             "Build AI agents to automate the risk analysis process.",
             "Made monte calro simulations 16 times faster by parallelizing solidity test case using rust.",
