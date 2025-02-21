@@ -10,7 +10,7 @@ export const constant = {
     linkedin: "https://www.linkedin.com/in/rajdeep-sengupta/",
     github: "https://github.com/Rajdip019",
     twitter: "https://twitter.com/RajdeepS019",
-    resume : "https://drive.google.com/file/d/14ttjRc7Rv9rRRzgemwG6yzoiWBIKdc6C/view?usp=sharing"
+    resume : "https://drive.google.com/file/d/1qBHEufnBFop_6U3h1dKkdnHCDlv6qkiJ/view?usp=sharing"
   },
   workExperience: [
     {
