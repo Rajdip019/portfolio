@@ -1,5 +1,5 @@
 # Notion CMS Next.js Blog / Portfolio Website 💻
-Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a thing you must know! You can freely use this template to build your personal blog website/portfolio website but make sure to remove my personal data before using the template. Here is comprehensive guide if you want to use this website as a template.
+Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a thing you must know! You can use this template to build your personal blog website/portfolio website but please make sure to remove my personal data before using the template. Here is a comprehensive guide if you want to use this website as a template.
 
 ## How to setup Local Environment ( TEMPLATE USAGE )
 
