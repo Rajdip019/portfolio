@@ -12,7 +12,7 @@ interface Props {
 const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
     return (
         <div className='mt-5 bg-black my-3 rounded-lg p-5 border-gray-800 border transition-all'>
-            <div className=' flex items-start gap-5'>
+            <div className=' flex flex-col md:flex-row items-start gap-5'>
                 <img src={workExp.logo} alt="" className='w-14 h-14 rounded-full mt-1' />
                 <div>
                     <Link target="_blank" href={workExp.link} className='flex gap-2 items-center group hover:underline underline-offset-4'>

@@ -8,11 +8,11 @@ const Navbar = () => {
     const router = useRouter();
     const { pathname } = router;
     return (
-        <header className='md:px-10 px-3 py-3 shadow-xl sticky top-0 z-50 backdrop-blur-2xl bg-transparent'>
-            <nav className=' flex justify-center md:justify-between flex-col md:flex-row items-center'>
-                <div className=' flex items-center gap-2'>
-                    {pathname.includes('blog/') ? (
-                        <Link href="/blog">
+        <header className='md:px-10 px-3 py-3 shadow-xl mds:sticky top-0 z-50 backdrop-blur-2xl bg-transparent'>
+            <nav className='flex justify-center md:justify-between flex-col md:flex-row items-center py-1'>
+                <div className='hidden md:flex items-center gap-2'>
+                    {pathname.includes('blogs/') ? (
+                        <Link href="/blogs">
                             <button className=" flex items-center gap-2 p-2 rounded-md mr-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
@@ -25,9 +25,9 @@ const Navbar = () => {
                     <h1 className=' text-xl font-semibold'>{constant.personalDetails.firstName} {constant.personalDetails.lastName}</h1>
                     </Link>
                 </div>
-                <div className=' flex flex-col md:flex-row items-center mt-4 md:mt-0 gap-6'>
-                    <div className='flex gap-6 '>
-                        <Link href="/work-experiences" className={`${pathname === '/work-experiences' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4`}>
+                <div className=' flex flex-col md:flex-row items-center gap-6'>
+                    <div className='flex flex-wrap gap-6 justify-center md:justify-left py-5 border-y-2 md:border-0 md:py-0'>
+                        <Link href="/work-experiences" className={`${pathname === '/work-experiences' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap `}>
                            Work Experiences
                         </Link>
                         <Link href="/side-projects" className={`${pathname === '/side-projects' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap`}>

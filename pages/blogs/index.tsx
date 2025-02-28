@@ -16,7 +16,7 @@ export default function Home({ posts }: any) {
     const router = useRouter();
 
     const handleRoute = (id: string) => {
-        router.push(`/blog/${id}`);
+        router.push(`/blogs/${id}`);
     }
 
     useEffect(() => {
@@ -60,8 +60,8 @@ export default function Home({ posts }: any) {
                             }
                         );
                         return (
-                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-black my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 text-gray-300 transition-all cursor-pointer group relative">
-                                <h3 className=" text-lg md:text-xl font-semibold md:group-hover:text-[1.7rem] transition-all">
+                            <li key={blog.id} onClick={() => handleRoute(blog.id)} className=" bg-black my-3 rounded-lg p-5 border-gray-800 border hover:bg-gray-900 hover:scale-105 transition-all cursor-pointer group relative">
+                                <h3 className=" text-lg md:text-xl font-semibold transition-all">
                                     <Text text={blog.properties.Name.title} />
                                 </h3>
                                 <div className=" flex items-center text-sm gap-2 my-2">
