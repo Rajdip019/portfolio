@@ -3,6 +3,7 @@ import Navbar from '@/components/Shared/Navbar'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
+import { Analytics } from "@vercel/analytics/react"
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={`${router.pathname.includes("/blogs/") ? "[mask-image:radial-gradient(ellipse_at_center,transparent_100%,black)]" : "[mask-image:radial-gradient(ellipse_at_center,transparent_55%,black)]"} absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white`}></div>
         <Navbar />
         <Component {...pageProps} />
+        <Analytics />
         <Footer />
       </div>
     </>
