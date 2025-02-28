@@ -1,4 +1,4 @@
-import styles from  "../../pages/blog/[id]/post.module.css"
+import styles from  "../../pages/blogs/[id]/post.module.css"
 
 export const Text = ({text} : { text : any}) => {
     if (!text) {
