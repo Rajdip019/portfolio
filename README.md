@@ -1,11 +1,11 @@
 # Notion CMS Next.js Blog / Portfolio Website 💻
-Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a thing you must know! You can use this template to build your personal blog website/portfolio website but please make sure to remove my personal data before using the template. Here is a comprehensive guide if you want to use this website as a template.
+Hey, this is Rajdeep, creator of this project. Before you go ahead, here is a thing you must know! You can use this template to build your personal blog website/portfolio website, but please make sure to remove my data before using the template. Here is a comprehensive guide if you want to use this website as a template.
 
 ## How to setup Local Environment ( TEMPLATE USAGE )
 
-### Step 1 : ⏬
+### Step 1: ⏬
 
-Clean up my personal data and prepare the repo. ( If you want to contribute go to CONTIBUTING.md )
+Clean up my personal data and prepare the repo. ( If you want to contribute, go to CONTIBUTING.md )
 
 ```bash
 npm run setup 
@@ -21,7 +21,7 @@ npm install
 
 ### Step 3 ✉️
 
-Add Environment Variables. There is only two variables required to make this work. You already have a **.env.local** file in your root directory if you have done the Step 1 properly.
+Add Environment Variables. There are only two variables required to make this work. You already have a **.env.local** file in your root directory if you have done Step 1 properly.
 ```
 NOTION_TOKEN=
 NOTION_DATABASE_ID=
@@ -30,13 +30,13 @@ NOTION_DATABASE_ID=
 #### Getting the env. 🔍
 Head to [Notion's Integration Website](https://www.notion.so/my-integrations). Make a new integration and get the secret key from there. That is your NOTION_TOKEN.
 
-Finally it's time to get the NOTION_DATABASE_ID
+Finally, it's time to get the NOTION_DATABASE_ID
 
-See the URL of the page. For example https://www.notion.so/rajdeepsengupta/Blogs-cd0db9f8767843ca9563c591a233be5b. Here `cd0db9f8767843ca9563c591a233be5b` is the database id.
+See the URL of the page. For example, https://www.notion.so/rajdeepsengupta/Blogs-cd0db9f8767843ca9563c591a233be5b. Here `cd0db9f8767843ca9563c591a233be5b` is the database id.
 
 ### Step 4 🤝
 
-Making Blogs database in notion and connecting them to our blogs website.
+Making Blogs database in Notion and connecting them to our blogs website.
 
 
 For the next env. Make a new page in Notion and make a new database in that. 
