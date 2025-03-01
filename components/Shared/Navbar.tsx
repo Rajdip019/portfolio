@@ -21,14 +21,17 @@ const Navbar = () => {
                         </Link>
                     ) : (null)}
                     <Link href="/" className=' flex items-center gap-4'>
-                    <img src={constant.personalDetails.picture} alt="" className=' w-10 rounded-full' />
-                    <h1 className=' text-xl font-semibold'>{constant.personalDetails.firstName} {constant.personalDetails.lastName}</h1>
+                        <img src={constant.personalDetails.picture} alt="" className=' w-10 rounded-full' />
+                        <h1 className=' text-xl font-semibold'>{constant.personalDetails.firstName} {constant.personalDetails.lastName}</h1>
                     </Link>
                 </div>
                 <div className=' flex flex-col md:flex-row items-center gap-6'>
                     <div className='flex flex-wrap gap-6 justify-center md:justify-left py-5 border-y-2 md:border-0 md:py-0'>
+                        <Link href="/" className={`${pathname === '/' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap md:hidden`}>
+                            Home
+                        </Link>
                         <Link href="/work-experiences" className={`${pathname === '/work-experiences' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap `}>
-                           Work Experiences
+                            Work Experiences
                         </Link>
                         <Link href="/side-projects" className={`${pathname === '/side-projects' ? 'scale-105 font-semibold' : ''} hover:hover:scale-105 offset-4 whitespace-nowrap`}>
                             Side Projects
