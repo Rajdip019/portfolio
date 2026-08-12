@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://rajdeep.vercel.app/sitemap.xml
+Sitemap: https://rajdeepsengupta.com/sitemap.xml

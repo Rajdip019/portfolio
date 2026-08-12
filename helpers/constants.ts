@@ -50,7 +50,9 @@ export const constant = {
     lastName: "Sengupta",
     email: "rajdipgupta019@gmail.com",
     picture: "/profile-pic.jpeg",
-    website: "https://rajdeep.vercel.app", // Use https here
+    // Feeds canonical URLs, og:image, the sitemap and JSON-LD — keep it the
+    // primary domain set in Vercel, with no trailing slash.
+    website: "https://rajdeepsengupta.com",
     linkedin: "https://www.linkedin.com/in/rajdeep-sengupta/",
     github: "https://github.com/Rajdip019",
     twitter: "https://twitter.com/RajdeepS019",
