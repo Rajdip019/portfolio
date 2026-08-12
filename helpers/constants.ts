@@ -1,4 +1,42 @@
 export const constant = {
+  /** One line that says what kind of engineer this is. */
+  positioning:
+    "I solve the engineering problems that show up on the balance sheet — leading teams to design architectures that scale under real traffic, and cutting what they cost to run by orders of magnitude.",
+
+  /**
+   * Headline numbers, pulled out of the work history so they lead the page
+   * instead of hiding inside bullet lists. Each one is attributed, so it is
+   * clear these span roles rather than describing a single job.
+   */
+  impact: [
+    {
+      value: "60×",
+      label: "lower cloud cost",
+      context: "Rebuilt the risk engine on Rust + CUDA",
+      company: "Chainrisk Labs",
+    },
+    {
+      value: "6M+",
+      label: "simulations / day",
+      context: "Automated risk analysis pipeline",
+      company: "Chainrisk Labs",
+    },
+    {
+      value: "120×",
+      label: "cheaper to operate",
+      context: "Brought the stack in-house — ₹6,000 to ₹50",
+      company: "DryFi",
+    },
+  ],
+
+  /** Stack grouped by concern — names must match technologiesAndLanguages. */
+  stackGroups: [
+    { title: "Languages", items: ["Rust", "Golang", "TypeScript"] },
+    { title: "Cloud", items: ["AWS", "GCP", "Terraform", "Ansible", "Linux"] },
+    { title: "Platform", items: ["Docker", "Kubernetes", "Git"] },
+    { title: "Product", items: ["Node.js", "Express.js", "Next.js", "React"] },
+  ],
+
   personalDetails: {
     firstName: "Rajdeep",
     lastName: "Sengupta",
@@ -14,7 +52,7 @@ export const constant = {
     {
       logo: "https://pbs.twimg.com/profile_images/1805248090041126913/xgkui3I-_400x400.jpg",
       company: "Chainrisk Labs",
-      link: "https://chainrisk.cloud",
+      link: "https://chainrisk.xyz",
       experiences: [
         {
           title: "Lead Cloud and Infrastructure Engineer", 
@@ -24,8 +62,8 @@ export const constant = {
           description: [
             "Reduced cloud cost by 60 times and made the system 40 times faster by utilizing CUDA and Rust.",
             "Made an automated risk analysis pipeline which handles 6M+ large simulations per day.",
-            "Build AI agents to automate the risk analysis process.",
-            "Made monte calro simulations 16 times faster by parallelizing solidity test case using rust.",
+            "Built AI agents to automate the risk analysis process.",
+            "Made Monte Carlo simulations 16 times faster by parallelizing Solidity test cases using Rust.",
             "Working on AWS to build scalable and secure infrastructure for the company.",
           ]
         },
@@ -34,7 +72,7 @@ export const constant = {
           location: "Remote",
           startDate: "Dec 2022",
           endDate: "Feb 2022",
-          description: ["Worked on GCP to built a bounty and audit platform for the company. Language used: TypeScript, Golang."]
+          description: ["Worked on GCP to build a bounty and audit platform for the company. Language used: TypeScript, Golang."]
         }
       ],
     },
@@ -62,14 +100,14 @@ export const constant = {
           location: "Remote",
           startDate: "Dec 2022",
           endDate: "Oct 2023",
-          description: ["Worked on frontend and backend to build and launch full fledged features for the company. Also working on GCP to manage the infrastructure. Language used: TypeScript, Golang."]
+          description: ["Worked on frontend and backend to build and launch full-fledged features for the company. Also working on GCP to manage the infrastructure. Language used: TypeScript, Golang."]
         },
         {
           title: "Software Developer Engineer Intern",
           location: "Remote",
           startDate: "April 2022",
           endDate: "Nov 2023",
-          description: ["Worked on frontend and backend to build and launch full fledged features for the company. Language used: TypeScript, Golang."]
+          description: ["Worked on frontend and backend to build and launch full-fledged features for the company. Language used: TypeScript, Golang."]
         }
       ],
     }
@@ -113,7 +151,7 @@ export const constant = {
     {
       title: "Medorant",
       image: "https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L25zMTQ2NTEtaW1hZ2Uta3d2eWQybmIuanBn.jpg",
-      description: "A app to scan and tell if a medicine is counter-fit for you or not.",
+      description: "An app to scan and tell if a medicine is counterfeit for you or not.",
       link: "https://devfolio.co/projects/medorant-8690",
       techstack: ["AWS", "Javascript", "Lambda", "API Gateway"]
     }

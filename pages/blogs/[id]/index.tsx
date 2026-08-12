@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, Key } from "react";
 import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../../../lib/notion";
+import { getDatabase, getPage, getBlocks, isNotFoundError } from "../../../lib/notion";
 import Link from "next/link";
 import { databaseId } from "../../blogs";
 import styles from "./post.module.css";
@@ -9,9 +9,6 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Text } from "@/components/Shared/NotionText";
 import React from "react";
 import { constant } from "@/helpers/constants";
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Code from "@/components/Code";
 
 const renderNestedList = (block: { [x: string]: any; type?: any; }) => {
@@ -184,14 +181,22 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
 
   const [readerMode, setReaderMode] = React.useState<number>(0);
 
+  // Rendered while a not-yet-generated page is being fetched (fallback: true).
   if (!page || !blocks) {
-    return <div />;
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center">
+        <div className="flex items-center gap-3 font-mono text-sm text-gray-500">
+          <span className="h-3 w-1.5 animate-blink bg-accent" />
+          fetching post...
+        </div>
+      </div>
+    );
   }
 
   return (
     <div className={`${readerMode === 1 ? "bg-[#18181F]" : ""} pb-20 min-h-screen`}>
       <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
+        <title>{page.properties.Name.title?.[0]?.plain_text ?? "Untitled post"}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {!!page.cover && (
@@ -216,7 +221,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
             {constant.personalDetails.firstName} {constant.personalDetails.lastName}
           </div>
           <div className=" flex items-center text-sm gap-2 my-2">
-            <p>Published on : {new Date(page.last_edited_time).toLocaleString(
+            <p>Published on : {new Date(page.created_time).toLocaleString(
               "en-US",
               {
                 month: "short",
@@ -243,20 +248,31 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const database = await getDatabase(databaseId as string);
   return {
     paths: database.map((page: { id: string; }) => ({ params: { id: page.id } })),
-    fallback: true,
+    // "blocking" renders new posts server-side, so an unknown id gets a real
+    // 404 status instead of a 200 shell that never resolves.
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
   const { id } = context.params;
-  const page = await getPage(id);
-  const blocks = await getBlocks(id);
 
-  return {
-    props: {
-      page,
-      blocks,
-    },
-    revalidate: 1,
-  };
+  try {
+    const page = await getPage(id);
+    const blocks = await getBlocks(id);
+
+    return {
+      props: {
+        page,
+        blocks,
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    // An unknown id would otherwise leave the fallback page hanging forever.
+    if (isNotFoundError(error)) {
+      return { notFound: true, revalidate: 60 };
+    }
+    throw error;
+  }
 };

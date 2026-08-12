@@ -1,50 +1,29 @@
-/* eslint-disable @next/next/no-img-element */
 import { constant } from '@/helpers/constants'
-import { motion, useInView } from 'framer-motion';
+import Head from 'next/head'
 import React from 'react'
+import ProjectCard from '@/components/Shared/ProjectCard'
+import SectionHeading from '@/components/Shared/SectionHeading'
 
 const SideProjects = () => {
-
-    const ref = React.useRef(null);
-    const isInView = useInView(ref, { once: true });
-
     return (
-        <motion.div
-            ref={ref}
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: isInView ? 1 : 0, y: 0 }}
-            transition={{
-                duration: 0.8,
-                ease: "easeInOut",
-            }}
-            className='mb-20 mt-10 w-10/12 md:w-8/12 mx-auto min-h-screen'>
-            <h2 className='text-2xl font-semibold text-gray-200 text-center md:text-left mb-5'>Side Projects</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-                {constant.sideProjects.map((project, index) => (
-                    <a key={index} href={project.link} target='_blank' className='w-full'>
-                        <div className=' relative z-10'>
-                            <div className=' bg-black rounded-lg border-gray-800 border transition-all hover:scale-105 cursor-pointer h-[350px]'>
-                                <div className="flex flex-col justify-between h-full p-4 tracking-tight text-slate-100/50">
-                                    <div>
-                                        <h3 className="!pb-2 !m-0 font-semibold text-base text-slate-300">
-                                            {project.title}
-                                        </h3>
-                                        <div className="text-base !m-0 !pb-2 font-normal">
-                                            <span className="text-slate-400 ">
-                                                {project.description}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <img src={project.image} alt="" className='w-full h-40 object-cover' />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                ))}
+        <>
+            <Head>
+                <title>{`${constant.personalDetails.firstName}'s Side Projects`}</title>
+                <meta name="description" content="Side projects built by Rajdeep Sengupta — from an in-house Rust auth system to hackathon-winning cloud solutions." />
+            </Head>
+            <div className='mx-auto mb-24 min-h-screen w-11/12 max-w-5xl pt-16 md:w-10/12'>
+                <SectionHeading
+                    index="Archive"
+                    title="Side Projects"
+                    description="Things I build outside work — mostly to scratch my own itch, occasionally to win a hackathon."
+                />
+                <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+                    {constant.sideProjects.map((project, index) => (
+                        <ProjectCard key={project.title} project={project} index={index} />
+                    ))}
+                </div>
             </div>
-        </motion.div>
+        </>
     )
 }
 

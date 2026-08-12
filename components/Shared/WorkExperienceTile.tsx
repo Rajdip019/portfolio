@@ -10,56 +10,57 @@ interface Props {
 }
 
 const WorkExperienceTile: React.FC<Props> = ({ workExp, isCurrent }) => {
+    // The current role only renders its latest position; the archive shows all of them.
+    const experiences = isCurrent ? workExp.experiences.slice(0, 1) : workExp.experiences;
+
     return (
-        <div className='mt-5 bg-black my-3 rounded-lg p-5 border-gray-800 border transition-all'>
-            <div className=' flex flex-col md:flex-row items-start gap-5'>
-                <img src={workExp.logo} alt="" className='w-14 h-14 rounded-full mt-1' />
-                <div>
-                    <Link target="_blank" href={workExp.link} className='flex gap-2 items-center group hover:underline underline-offset-4'>
-                        <h2 className='text-xl font-semibold text-gray300'>{workExp.company}</h2>
-                        <FiArrowUpRight className='w-6 h-6 opacity-0 group-hover:opacity-100 transition-all' />
+        <div className='card card-hover my-4 p-5 md:p-6'>
+            <div className='flex flex-col items-start gap-5 md:flex-row'>
+                <img
+                    src={workExp.logo}
+                    alt={workExp.company}
+                    className='h-12 w-12 shrink-0 rounded-full ring-1 ring-white/10'
+                />
+                <div className='w-full'>
+                    <Link
+                        target="_blank"
+                        href={workExp.link}
+                        className='group inline-flex items-center gap-1.5'
+                    >
+                        <h2 className='text-lg font-semibold text-gray-100 transition-colors group-hover:text-accent-soft'>
+                            {workExp.company}
+                        </h2>
+                        <FiArrowUpRight className='h-4 w-4 text-gray-600 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
                     </Link>
-                    {isCurrent ? (
-                        <ul>
-                            <li>
-                                <div>
-                                    <p className='text-gray-200 font-semibold my-0.5'>{workExp.experiences[0].title}</p>
-                                    <div className='flex gap-2 flex-col md:flex-row'>
-                                        <p className='text-gray-200'>{workExp.experiences[0].startDate} - {workExp.experiences[0].endDate}</p>
-                                        <p className='text-gray-200'>( {workExp.experiences[0].location} )</p>
-                                    </div>
-                                    <ul className='mt-4'>
-                                        {workExp.experiences[0].description.map((desc, index) => (
-                                            <li key={index} className='mt-2 text-gray-300 list-disc list-inside'> {desc}</li>
+
+                    {/* Timeline of roles at this company */}
+                    <ol className='mt-4 space-y-7 border-l border-white/10 pl-5'>
+                        {experiences.map((exp, index) => (
+                            <li key={index} className='relative'>
+                                <span className='absolute -left-[23px] top-2 h-1.5 w-1.5 rounded-full bg-accent ring-4 ring-[#08090b]' />
+
+                                <p className='font-medium text-gray-100'>{exp.title}</p>
+                                <div className='mt-1 flex flex-col gap-x-2 font-mono text-xs text-gray-500 md:flex-row md:items-center'>
+                                    <span>{exp.startDate} — {exp.endDate}</span>
+                                    <span className='hidden md:inline'>·</span>
+                                    <span>{exp.location}</span>
+                                </div>
+
+                                {exp.description.length > 1 ? (
+                                    <ul className='mt-3 space-y-2'>
+                                        {exp.description.map((desc, i) => (
+                                            <li key={i} className='flex gap-2.5 text-sm leading-relaxed text-gray-400'>
+                                                <span className='mt-[7px] h-1 w-1 shrink-0 rounded-full bg-gray-600' />
+                                                <span>{desc}</span>
+                                            </li>
                                         ))}
                                     </ul>
-                                </div>
+                                ) : (
+                                    <p className='mt-3 text-sm leading-relaxed text-gray-400'>{exp.description[0]}</p>
+                                )}
                             </li>
-                        </ul>
-                    ) : (
-                        <ul className={`${workExp.experiences.length > 1 ? 'list-disc' : ''}`}>
-                            {workExp.experiences.map((exp, index) => (
-                                <li key={index} className={`${workExp.experiences.length > 1 ? 'ml-4 mt-4' : ''}`}>
-                                    <div className={`${index > 0 ? 'mt-10' : ''}`}>
-                                        <p className=' text-gray-200 font-semibold my-0.5'>{exp.title}</p>
-                                        <div className=' flex gap-2 flex-col md:flex-row'>
-                                            <p className=' text-gray-200'>{exp.startDate} - {exp.endDate}</p>
-                                            <p className=' text-gray-200'>( {exp.location} )</p>
-                                        </div>
-                                        {exp.description.length > 1 ? (
-                                            <ul className='mt-4'>
-                                                {exp.description.map((desc, index) => (
-                                                    <li key={index} className='mt-2 text-gray-300 list-disc list-inside'> {desc}</li>
-                                                ))}
-                                            </ul>
-                                        ) : (
-                                            <p className='mt-2 text-gray-300'>{exp.description[0]}</p>
-                                        )}
-                                    </div>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+                        ))}
+                    </ol>
                 </div>
             </div>
         </div>

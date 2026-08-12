@@ -2,38 +2,115 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 0, 0, 0;
-  --background-end-rgb: 0, 0, 0;
+  --bg: 8, 9, 11;
+  --fg: 231, 233, 234;
+  --muted: 155, 161, 166;
+  --accent: 96, 165, 250;
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  body {
+    color: rgb(var(--fg));
+    background-color: rgb(var(--bg));
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(var(--accent), 0.25);
+    color: rgb(var(--fg));
+  }
+
+  a,
+  button {
+    outline-color: rgba(var(--accent), 0.6);
+  }
 }
 
-.bg-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg width='7' height='7' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.07' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+@layer components {
+  /* Surface used by every card on the site */
+  .card {
+    @apply relative rounded-xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300;
+  }
+
+  .card-hover:hover {
+    @apply border-accent/40 bg-white/[0.04] -translate-y-0.5;
+    box-shadow: 0 12px 40px -18px rgba(var(--accent), 0.45);
+  }
+
+  /* Small mono label — the "engineer" accent of the design */
+  .mono-label {
+    @apply font-mono text-xs uppercase tracking-[0.2em] text-accent/80;
+  }
+
+  .chip {
+    @apply font-mono text-[11px] rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-gray-400 transition-colors duration-200;
+  }
+
+  .chip:hover {
+    @apply border-accent/30 text-accent-soft;
+  }
+
+  .link-underline {
+    @apply relative text-gray-300 transition-colors duration-200 hover:text-white;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-gray-200 to-gray-500 bg-clip-text text-transparent;
+  }
+
+  /* Hairline that fades out — used under section headings */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(var(--accent), 0.4),
+      rgba(255, 255, 255, 0.06),
+      transparent
+    );
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
-html, body {
+html,
+body {
   -webkit-overflow-scrolling: touch;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-html, body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+html,
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari, and Opera */
-html::-webkit-scrollbar, body::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   display: none;
+}
+
+/* Locked while the boot loader is on screen */
+body.is-loading {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

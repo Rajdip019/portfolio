@@ -5,14 +5,39 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <footer className=' bg-black'>
-            <div className=' w-10/12 md:w-8/12 mx-auto py-10 flex justify-between items-center'>
-                <div className=' flex items-center gap-3 justify-between w-full flex-col md:flex-row'>
-                    <p className=' text-gray-200'>Made with ❤️ by <a href="https://twitter.com/RajdeepS019" target='_blank' className=' text-blue-500'>Rajdeep Sengupta</a></p>
-                    <div className=' flex gap-3'>
-                        <Link href="/contact" className=' hover:underline underline-offset-4' >Contact</Link>
-                        <a href={constant.personalDetails.resume}  className=' hover:underline underline-offset-4' target="_blank" rel="noopener noreferrer">Resume</a>
-                    </div>
+        <footer className='relative border-t border-white/[0.06] bg-black'>
+            <div className='mx-auto flex w-11/12 max-w-5xl flex-col items-center justify-between gap-4 py-10 md:w-10/12 md:flex-row'>
+                <p className='font-mono text-sm text-gray-500'>
+                    <span className='text-accent'>$</span> made with ❤️ by{' '}
+                    <a
+                        href={constant.personalDetails.twitter}
+                        target='_blank'
+                        rel="noopener noreferrer"
+                        className='text-gray-300 transition-colors hover:text-accent'
+                    >
+                        {constant.personalDetails.firstName} {constant.personalDetails.lastName}
+                    </a>
+                </p>
+                <div className='flex gap-5 font-mono text-sm'>
+                    <Link href="/contact" className='text-gray-500 transition-colors hover:text-accent'>
+                        Contact
+                    </Link>
+                    <a
+                        href={constant.personalDetails.resume}
+                        className='text-gray-500 transition-colors hover:text-accent'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Resume
+                    </a>
+                    <a
+                        href={constant.personalDetails.github}
+                        className='text-gray-500 transition-colors hover:text-accent'
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        GitHub
+                    </a>
                 </div>
             </div>
         </footer>

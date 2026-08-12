@@ -4,17 +4,57 @@ const notion = new Client({
   auth: process.env.NOTION_TOKEN,
 });
 
+/**
+ * Fetches every row of the database, following Notion's cursor pagination
+ * (a single query caps out at 100 rows).
+ */
 export const getDatabase = async (databaseId :  string) => {
-  const response : any = await notion.databases.query({
-    database_id: databaseId,
-  });
-  return response.results;
+  const results : any[] = [];
+  let cursor : string | undefined = undefined;
+
+  do {
+    const response : any = await notion.databases.query({
+      database_id: databaseId,
+      start_cursor: cursor,
+      sorts: [{ timestamp: "created_time", direction: "descending" }],
+    });
+    results.push(...response.results);
+    cursor = response.has_more ? response.next_cursor : undefined;
+  } while (cursor);
+
+  return results;
+};
+
+/**
+ * Published posts only, newest first. Filtering on Notion's side keeps
+ * unpublished drafts out of the page props entirely.
+ */
+export const getPublishedPosts = async (databaseId : string) => {
+  const results : any[] = [];
+  let cursor : string | undefined = undefined;
+
+  do {
+    const response : any = await notion.databases.query({
+      database_id: databaseId,
+      start_cursor: cursor,
+      filter: { property: "Published", checkbox: { equals: true } },
+      sorts: [{ timestamp: "created_time", direction: "descending" }],
+    });
+    results.push(...response.results);
+    cursor = response.has_more ? response.next_cursor : undefined;
+  } while (cursor);
+
+  return results;
 };
 
 export const getPage = async (pageId : string) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 };
+
+/** True when Notion reports the page/block simply does not exist. */
+export const isNotFoundError = (error : any) =>
+  error?.code === "object_not_found" || error?.status === 404;
 
 export const getBlocks = async (blockId : string) => {
   blockId = blockId.replaceAll("-", "");
