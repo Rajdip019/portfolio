@@ -42,6 +42,10 @@
     padding: 4px;
     border-radius: 2px;
     color: rgb(242, 82, 82);
+    /* Long unbroken tokens (file names, hashes) must wrap rather than push
+       the page wider than the viewport. */
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
   
   .italic {
@@ -94,11 +98,18 @@
   .bookmark {
     display: block;
     margin-bottom: 10px;
+    /* Bare URLs are one long token — wrap instead of widening the page. */
+    overflow-wrap: anywhere;
   }
-  
+
   .table {
     border: 1px solid currentColor;
     border-collapse: collapse;
+    /* Wide tables scroll inside their own box. */
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
   }
   .table th {
     border: 1px solid currentColor;

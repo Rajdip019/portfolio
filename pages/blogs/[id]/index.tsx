@@ -101,7 +101,7 @@ const renderBlock = (block: { [x: string]: any; id: any; children?: any; type?: 
       const caption = value.caption ? value.caption[0]?.plain_text : "";
       return (
         <figure>
-          <img className=" my-2" src={src} alt={caption} />
+          <img className="my-2 h-auto max-w-full rounded-lg" src={src} alt={caption} />
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );
@@ -207,11 +207,12 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
         publishedTime={page.created_time}
       />
       {!!page.cover && (
-        <div className="h-48 md:h-64">
-          <img src={page.cover?.external?.url ? page.cover?.external?.url : page.cover?.file?.url} alt="" className="h-48 md:h-64 w-screen" />
+        <div className="h-48 w-full overflow-hidden md:h-64">
+          {/* w-full, not w-screen — 100vw includes the scrollbar and overflows */}
+          <img src={page.cover?.external?.url ? page.cover?.external?.url : page.cover?.file?.url} alt="" className="h-48 w-full object-cover md:h-64" />
         </div>
       )}
-      <article className=" w-10/12 md:w-8/12 mx-auto pt-10">
+      <article className="mx-auto w-11/12 max-w-3xl overflow-x-hidden break-words pt-10 md:w-10/12">
         <div className=" flex justify-between items-center">
           <label className="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" value={readerMode} onChange={() => setReaderMode(readerMode === 1 ? 0 : 1)} className="sr-only peer" />
