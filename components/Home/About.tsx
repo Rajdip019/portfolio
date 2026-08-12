@@ -25,7 +25,7 @@ const About = () => {
       variants={container}
       initial="hidden"
       animate="show"
-      className="pb-14 pt-16 md:pb-20 md:pt-24"
+      className="pb-16 pt-20 md:pb-24 md:pt-28"
     >
       {/* Name and portrait sit on one baseline; the portrait is deliberately small. */}
       <div className="flex items-start justify-between gap-8">
@@ -75,12 +75,12 @@ const About = () => {
       {/* The positioning statement carries the most weight on the page. */}
       <motion.p
         variants={item}
-        className="mt-10 max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl md:leading-relaxed"
+        className="mt-12 max-w-3xl text-xl leading-relaxed text-gray-300 md:text-2xl md:leading-relaxed"
       >
         {constant.positioning}
       </motion.p>
 
-      <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <motion.div variants={item} className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-3">
         <a
           href={constant.personalDetails.resume}
           target="_blank"

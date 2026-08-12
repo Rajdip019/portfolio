@@ -33,21 +33,6 @@
 }
 
 @layer components {
-  /* Surface used by every card on the site */
-  .card {
-    @apply relative rounded-xl border border-white/[0.08] bg-white/[0.02] transition-all duration-300;
-  }
-
-  .card-hover:hover {
-    @apply border-accent/40 bg-white/[0.04] -translate-y-0.5;
-    box-shadow: 0 12px 40px -18px rgba(var(--accent), 0.45);
-  }
-
-  /* Small mono label — the "engineer" accent of the design */
-  .mono-label {
-    @apply font-mono text-xs uppercase tracking-[0.2em] text-accent/80;
-  }
-
   .chip {
     @apply font-mono text-[11px] rounded-md border border-white/10 bg-white/[0.03] px-2 py-1 text-gray-400 transition-colors duration-200;
   }

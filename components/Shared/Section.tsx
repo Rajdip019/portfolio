@@ -27,7 +27,7 @@ const Section: React.FC<Props> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="grid gap-6 border-t border-white/[0.06] py-14 md:grid-cols-[180px_1fr] md:gap-14 md:py-20"
+      className="grid gap-8 border-t border-white/[0.06] py-16 md:grid-cols-[200px_1fr] md:gap-16 md:py-24"
     >
       <div className="md:sticky md:top-28 md:h-fit">
         <div className="flex items-baseline gap-3 md:flex-col md:gap-2">

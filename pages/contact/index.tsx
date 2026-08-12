@@ -32,28 +32,31 @@ const Contact = () => {
             description="I try to maintain a 0 inbox, so email is the fastest way to reach me. DMs work too — I reply to all of them, usually within a day."
           />
 
-          <div className='grid grid-cols-1 gap-3 sm:grid-cols-2'>
+          <ul className='divide-y divide-white/[0.06] border-t border-white/[0.06]'>
             {channels.map((channel, index) => (
-              <motion.a
+              <motion.li
                 key={channel.label}
-                href={channel.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.15 + index * 0.07, ease: "easeOut" }}
-                className='card card-hover group flex items-center justify-between p-4'
               >
-                <div>
-                  <p className='mono-label'>{channel.label}</p>
-                  <p className='mt-1.5 text-sm text-gray-300 transition-colors group-hover:text-white'>
+                <a
+                  href={channel.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='group flex items-center gap-6 py-4'
+                >
+                  <span className='w-20 shrink-0 font-mono text-xs text-gray-600'>
+                    {channel.label}
+                  </span>
+                  <span className='min-w-0 flex-1 truncate text-gray-300 transition-colors duration-200 group-hover:text-accent-soft'>
                     {channel.value}
-                  </p>
-                </div>
-                <FiArrowUpRight className='h-4 w-4 text-gray-600 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
-              </motion.a>
+                  </span>
+                  <FiArrowUpRight className='h-4 w-4 shrink-0 text-gray-700 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
+                </a>
+              </motion.li>
             ))}
-          </div>
+          </ul>
 
           {/* Sign-off, styled like the boot terminal so the page closes on-theme */}
           <motion.div

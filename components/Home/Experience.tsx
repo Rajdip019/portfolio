@@ -42,7 +42,7 @@ const Experience = () => {
                 </div>
             </div>
 
-            <ul className='mt-7 space-y-4'>
+            <ul className='mt-8 space-y-4'>
                 {currentRole.description.map((desc, index) => (
                     <li key={index} className='flex gap-4'>
                         <span className='mt-2 h-px w-5 shrink-0 bg-white/15' />
@@ -52,7 +52,7 @@ const Experience = () => {
             </ul>
 
             {/* Everything before it, condensed — the arc, not the detail */}
-            <p className='mb-1 mt-12 font-mono text-xs uppercase tracking-[0.2em] text-gray-700'>
+            <p className='mb-2 mt-14 font-mono text-xs uppercase tracking-[0.2em] text-gray-700'>
                 Previously
             </p>
             <ul className='divide-y divide-white/[0.06]'>

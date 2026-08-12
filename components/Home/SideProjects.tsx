@@ -6,11 +6,11 @@ import ProjectCard from '../Shared/ProjectCard';
 
 const SideProjects = () => {
     return (
-        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-            {constant.sideProjects.slice(0, 2).map((project, index) => (
+        <ul className='divide-y divide-white/[0.06]'>
+            {constant.sideProjects.slice(0, 3).map((project, index) => (
                 <ProjectCard key={project.title} project={project} index={index} />
             ))}
-        </div>
+        </ul>
     )
 }
 

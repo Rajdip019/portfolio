@@ -14,7 +14,7 @@ const Impact = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className='grid grid-cols-1 gap-10 border-t border-white/[0.08] pt-10 sm:grid-cols-3 sm:gap-0'
+            className='grid grid-cols-1 gap-10 border-t border-white/[0.08] pb-16 pt-12 sm:grid-cols-3 sm:gap-0 md:pb-20 md:pt-14'
         >
             {constant.impact.map((metric, index) => (
                 <motion.div
@@ -23,7 +23,7 @@ const Impact = () => {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 + index * 0.08 }}
-                    className={index > 0 ? 'sm:border-l sm:border-white/10 sm:pl-8' : 'sm:pr-8'}
+                    className={index > 0 ? 'sm:border-l sm:border-white/10 sm:pl-10' : 'sm:pr-10'}
                 >
                     <p className='font-mono text-3xl tracking-tight text-gray-50'>
                         {metric.value}

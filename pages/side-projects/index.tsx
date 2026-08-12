@@ -17,11 +17,11 @@ const SideProjects = () => {
                     title="Side Projects"
                     description="Things I build outside work — mostly to scratch my own itch, occasionally to win a hackathon."
                 />
-                <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+                <ul className='divide-y divide-white/[0.06]'>
                     {constant.sideProjects.map((project, index) => (
                         <ProjectCard key={project.title} project={project} index={index} />
                     ))}
-                </div>
+                </ul>
             </div>
         </>
     )

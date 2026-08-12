@@ -8,7 +8,7 @@ const iconFor = (name: string) =>
 /** Grouped by concern — how you'd describe a stack, not an alphabet soup of logos. */
 const TechStack = () => {
   return (
-    <div className='space-y-6'>
+    <div className='space-y-7'>
       {constant.stackGroups.map((group) => (
         <div key={group.title} className='flex flex-col gap-2 sm:flex-row sm:gap-6'>
           <p className='w-24 shrink-0 pt-1.5 font-mono text-xs text-gray-600'>
