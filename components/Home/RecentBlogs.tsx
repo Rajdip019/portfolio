@@ -12,7 +12,7 @@ const RecentBlogs: React.FC<Props> = ({ posts }: any) => {
     return (
         <div>
             {published.length === 0 && (
-                <p className="font-mono text-sm text-gray-600">No posts yet.</p>
+                <p className="font-mono text-sm text-faint">No posts yet.</p>
             )}
             <ol className='divide-y divide-white/[0.06]'>
                 {published.slice(0, 4).map((post: any, index: number) => (

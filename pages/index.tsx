@@ -6,8 +6,8 @@ import { GetStaticProps } from 'next/types'
 import React from 'react'
 import { getPublishedPosts } from '@/lib/notion'
 import { databaseId } from './blogs'
-import Head from 'next/head'
 import { constant } from '@/helpers/constants'
+import Seo from '@/components/Shared/Seo'
 import Experience from '@/components/Home/Experience'
 import PersonalExperiences from '@/components/Home/PersonalExperiences'
 import SideProjects from '@/components/Home/SideProjects'
@@ -16,10 +16,10 @@ import Section from '@/components/Shared/Section'
 const Home = ({ posts }: any) => {
   return (
     <>
-      <Head>
-        <title>{`${constant.personalDetails.firstName}'s Portfolio`}</title>
-        <meta name="description" content={constant.positioning} />
-      </Head>
+      {/* Title follows the current role in constants, so it can't drift. */}
+      <Seo
+        title={`${constant.personalDetails.firstName} ${constant.personalDetails.lastName} — ${constant.workExperience[0].experiences[0].title}`}
+      />
 
       <div className='mx-auto w-11/12 max-w-5xl md:w-10/12'>
         <About />

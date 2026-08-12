@@ -29,9 +29,9 @@ const Impact = () => {
                         {metric.value}
                     </p>
                     <p className='mt-2 text-sm text-gray-300'>{metric.label}</p>
-                    <p className='mt-3 text-[13px] leading-relaxed text-gray-600'>
+                    <p className='mt-3 text-[13px] leading-relaxed text-faint'>
                         {metric.context}
-                        <span className='text-gray-700'> · {metric.company}</span>
+                        <span className='text-faint'> · {metric.company}</span>
                     </p>
                 </motion.div>
             ))}

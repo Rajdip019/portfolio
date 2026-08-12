@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { constant } from '@/helpers/constants'
 import { motion } from 'framer-motion'
-import Head from 'next/head'
 import React from 'react'
 import SectionHeading from '@/components/Shared/SectionHeading'
+import Seo from '@/components/Shared/Seo'
 import { FiArrowUpRight } from 'react-icons/fi'
 
 const channels = [
@@ -16,10 +16,10 @@ const channels = [
 const Contact = () => {
   return (
     <>
-      <Head>
-        <title>{`Contact ${constant.personalDetails.firstName}`}</title>
-        <meta name="description" content="Get in touch with Rajdeep Sengupta — email, LinkedIn, Twitter or GitHub." />
-      </Head>
+      <Seo
+        title={`Contact — ${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
+        description="Get in touch — email, LinkedIn, Twitter or GitHub."
+      />
       <motion.section
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
@@ -46,13 +46,13 @@ const Contact = () => {
                   rel="noopener noreferrer"
                   className='group flex items-center gap-6 py-4'
                 >
-                  <span className='w-20 shrink-0 font-mono text-xs text-gray-600'>
+                  <span className='w-20 shrink-0 font-mono text-xs text-faint'>
                     {channel.label}
                   </span>
                   <span className='min-w-0 flex-1 truncate text-gray-300 transition-colors duration-200 group-hover:text-accent-soft'>
                     {channel.value}
                   </span>
-                  <FiArrowUpRight className='h-4 w-4 shrink-0 text-gray-700 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
+                  <FiArrowUpRight className='h-4 w-4 shrink-0 text-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
                 </a>
               </motion.li>
             ))}
@@ -66,7 +66,7 @@ const Contact = () => {
             className='mb-20 mt-16 font-mono text-sm'
           >
             <div className='hairline mb-6' />
-            <p className='text-gray-500'>
+            <p className='text-subtle'>
               <span className='text-accent'>$</span> exit
             </p>
             <p className='mt-2 flex items-center gap-2 text-gray-300'>

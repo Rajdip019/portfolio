@@ -1,8 +1,8 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
 import { constant } from '@/helpers/constants'
 import React from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { FiArrowUpRight } from 'react-icons/fi'
@@ -36,7 +36,7 @@ const About = () => {
               <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-emerald-400/80">
-              Open to conversations
+              {constant.availability.status}
             </span>
           </motion.div>
 
@@ -52,7 +52,7 @@ const About = () => {
             className="mt-3 font-mono text-sm text-gray-400"
           >
             {currentRole.experiences[0].title}
-            <span className="text-gray-700"> · </span>
+            <span className="text-faint"> · </span>
             <a
               href={currentRole.link}
               target="_blank"
@@ -62,14 +62,27 @@ const About = () => {
               {currentRole.company}
             </a>
           </motion.p>
+
+          {/* The first thing a remote recruiter checks. */}
+          <motion.p variants={item} className="mt-2 font-mono text-xs text-subtle">
+            {constant.availability.location}
+            <span className="text-faint"> · </span>
+            {constant.availability.timezone}
+            <span className="text-faint"> · </span>
+            {constant.availability.hours}
+          </motion.p>
         </div>
 
-        <motion.img
-          variants={item}
-          src={constant.personalDetails.picture}
-          alt={`${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
-          className="hidden w-20 shrink-0 rounded-full ring-1 ring-white/10 sm:block md:w-24"
-        />
+        <motion.div variants={item} className="hidden shrink-0 sm:block">
+          <Image
+            src={constant.personalDetails.picture}
+            alt={`${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
+            width={96}
+            height={96}
+            priority
+            className="h-20 w-20 rounded-full object-cover ring-1 ring-white/10 md:h-24 md:w-24"
+          />
+        </motion.div>
       </div>
 
       {/* The positioning statement carries the most weight on the page. */}
@@ -93,7 +106,7 @@ const About = () => {
         <span className="h-3 w-px bg-white/10" />
         <Link
           href="/contact"
-          className="font-mono text-sm text-gray-500 transition-colors hover:text-accent"
+          className="font-mono text-sm text-subtle transition-colors hover:text-accent"
         >
           Contact
         </Link>
@@ -101,7 +114,7 @@ const About = () => {
           href={constant.personalDetails.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-sm text-gray-500 transition-colors hover:text-accent"
+          className="font-mono text-sm text-subtle transition-colors hover:text-accent"
         >
           GitHub
         </a>
@@ -109,7 +122,7 @@ const About = () => {
           href={constant.personalDetails.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-sm text-gray-500 transition-colors hover:text-accent"
+          className="font-mono text-sm text-subtle transition-colors hover:text-accent"
         >
           LinkedIn
         </a>

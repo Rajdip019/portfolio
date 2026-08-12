@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <footer className='relative border-t border-white/[0.06] bg-black'>
             <div className='mx-auto flex w-11/12 max-w-5xl flex-col items-center justify-between gap-4 py-10 md:w-10/12 md:flex-row'>
-                <p className='font-mono text-sm text-gray-500'>
+                <p className='font-mono text-sm text-subtle'>
                     <span className='text-accent'>$</span> made with ❤️ by{' '}
                     <a
                         href={constant.personalDetails.twitter}
@@ -19,12 +19,12 @@ const Footer = () => {
                     </a>
                 </p>
                 <div className='flex gap-5 font-mono text-sm'>
-                    <Link href="/contact" className='text-gray-500 transition-colors hover:text-accent'>
+                    <Link href="/contact" className='text-subtle transition-colors hover:text-accent'>
                         Contact
                     </Link>
                     <a
                         href={constant.personalDetails.resume}
-                        className='text-gray-500 transition-colors hover:text-accent'
+                        className='text-subtle transition-colors hover:text-accent'
                         target="_blank"
                         rel="noopener noreferrer"
                     >
@@ -32,7 +32,7 @@ const Footer = () => {
                     </a>
                     <a
                         href={constant.personalDetails.github}
-                        className='text-gray-500 transition-colors hover:text-accent'
+                        className='text-subtle transition-colors hover:text-accent'
                         target="_blank"
                         rel="noopener noreferrer"
                     >

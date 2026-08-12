@@ -1,16 +1,16 @@
 import { constant } from '@/helpers/constants'
-import Head from 'next/head'
 import React from 'react'
 import ProjectCard from '@/components/Shared/ProjectCard'
 import SectionHeading from '@/components/Shared/SectionHeading'
+import Seo from '@/components/Shared/Seo'
 
 const SideProjects = () => {
     return (
         <>
-            <Head>
-                <title>{`${constant.personalDetails.firstName}'s Side Projects`}</title>
-                <meta name="description" content="Side projects built by Rajdeep Sengupta — from an in-house Rust auth system to hackathon-winning cloud solutions." />
-            </Head>
+            <Seo
+                title={`Side Projects — ${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
+                description="Side projects — from an in-house Rust auth system to hackathon-winning cloud solutions."
+            />
             <div className='mx-auto mb-24 min-h-screen w-11/12 max-w-5xl pt-16 md:w-10/12'>
                 <SectionHeading
                     index="Archive"

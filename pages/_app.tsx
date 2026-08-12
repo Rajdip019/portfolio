@@ -1,5 +1,6 @@
 import Footer from '@/components/Shared/Footer'
 import Loader from '@/components/Shared/Loader'
+import StructuredData from '@/components/Shared/StructuredData'
 import Navbar from '@/components/Shared/Navbar'
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <StructuredData />
       <Loader />
 
       {/* Reading progress across the whole page */}

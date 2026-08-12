@@ -34,7 +34,7 @@ const SectionHeading: React.FC<Props> = ({
         {href && (
           <Link
             href={href}
-            className="group flex shrink-0 items-center gap-1.5 font-mono text-xs text-gray-600 transition-colors hover:text-accent"
+            className="group flex shrink-0 items-center gap-1.5 font-mono text-xs text-faint transition-colors hover:text-accent"
           >
             {linkLabel}
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">

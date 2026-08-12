@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, Key } from "react";
-import Head from "next/head";
 import { getDatabase, getPage, getBlocks, isNotFoundError } from "../../../lib/notion";
+import Seo from "@/components/Shared/Seo";
+import Image from "next/image";
 import Link from "next/link";
 import { databaseId } from "../../blogs";
 import styles from "./post.module.css";
@@ -185,7 +186,7 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
   if (!page || !blocks) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="flex items-center gap-3 font-mono text-sm text-gray-500">
+        <div className="flex items-center gap-3 font-mono text-sm text-subtle">
           <span className="h-3 w-1.5 animate-blink bg-accent" />
           fetching post...
         </div>
@@ -195,10 +196,16 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
 
   return (
     <div className={`${readerMode === 1 ? "bg-[#18181F]" : ""} pb-20 min-h-screen`}>
-      <Head>
-        <title>{page.properties.Name.title?.[0]?.plain_text ?? "Untitled post"}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <Seo
+        title={`${page.properties.Name.title?.[0]?.plain_text ?? "Untitled post"} — ${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
+        description={
+          page.properties.Name.title?.[0]?.plain_text
+            ? `${page.properties.Name.title[0].plain_text} — written by ${constant.personalDetails.firstName} ${constant.personalDetails.lastName}.`
+            : undefined
+        }
+        type="article"
+        publishedTime={page.created_time}
+      />
       {!!page.cover && (
         <div className="h-48 md:h-64">
           <img src={page.cover?.external?.url ? page.cover?.external?.url : page.cover?.file?.url} alt="" className="h-48 md:h-64 w-screen" />
@@ -217,7 +224,13 @@ export default function Post({ page, blocks }: { page: any, blocks: any }) {
         </h1>
         <div className=" flex justify-between mt-5 flex-col md:flex-row">
           <div className=" flex gap-2 items-center">
-            <img src={constant.personalDetails.picture} alt="" className=" w-8 rounded-full" />
+            <Image
+              src={constant.personalDetails.picture}
+              alt=""
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-full object-cover"
+            />
             {constant.personalDetails.firstName} {constant.personalDetails.lastName}
           </div>
           <div className=" flex items-center text-sm gap-2 my-2">

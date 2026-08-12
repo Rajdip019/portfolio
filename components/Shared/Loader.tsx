@@ -139,7 +139,7 @@ const Loader = () => {
               <span className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
               <span className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-              <span className="ml-2 font-mono text-xs text-gray-500">
+              <span className="ml-2 font-mono text-xs text-subtle">
                 {constant.personalDetails.firstName.toLowerCase()}@portfolio — zsh
               </span>
             </div>
@@ -175,14 +175,14 @@ const Loader = () => {
                   transition={{ ease: "linear", duration: 0.2 }}
                 />
               </div>
-              <div className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-gray-600">
+              <div className="mt-2 flex justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
                 <span>building</span>
                 <span>{Math.round(progress * 100)}%</span>
               </div>
             </div>
           </motion.div>
 
-          <p className="absolute bottom-8 font-mono text-[10px] uppercase tracking-[0.2em] text-gray-700">
+          <p className="absolute bottom-8 font-mono text-[10px] uppercase tracking-[0.2em] text-faint">
             press any key to skip
           </p>
         </motion.div>

@@ -24,7 +24,7 @@ const PersonalExperiences = () => {
                         transition={{ duration: 0.4, delay: index * 0.06 }}
                         className='flex gap-5 py-3.5 first:pt-0'
                     >
-                        <span className='w-10 shrink-0 pt-0.5 font-mono text-xs text-gray-600'>
+                        <span className='w-10 shrink-0 pt-0.5 font-mono text-xs text-faint'>
                             {achievement.year}
                         </span>
                         <span className='text-[15px] leading-relaxed text-gray-400'>
@@ -38,7 +38,7 @@ const PersonalExperiences = () => {
                 href={constant.personalDetails.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className='mt-6 inline-flex items-center gap-1.5 font-mono text-xs text-gray-600 transition-colors hover:text-accent'
+                className='mt-6 inline-flex items-center gap-1.5 font-mono text-xs text-faint transition-colors hover:text-accent'
             >
                 More on LinkedIn <span>→</span>
             </a>

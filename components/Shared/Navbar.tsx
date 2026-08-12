@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import { constant } from '@/helpers/constants'
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react'
@@ -14,8 +14,8 @@ const links = [
 ];
 
 const socials = [
-    { href: constant.personalDetails.twitter, icon: "https://img.icons8.com/?size=100&id=111056&format=png&color=ffffff", label: "Twitter", invert: false },
-    { href: constant.personalDetails.github, icon: "https://img.icons8.com/?size=512&id=12599&format=png", label: "GitHub", invert: true },
+    { href: constant.personalDetails.twitter, icon: "/social/twitter.png", label: "Twitter", invert: false },
+    { href: constant.personalDetails.github, icon: "/social/github.png", label: "GitHub", invert: true },
 ];
 
 const Navbar = () => {
@@ -36,10 +36,12 @@ const Navbar = () => {
                         </Link>
                     )}
                     <Link href="/" className='group flex items-center gap-3'>
-                        <img
+                        <Image
                             src={constant.personalDetails.picture}
                             alt=""
-                            className='w-8 rounded-full ring-1 ring-white/10 transition-all duration-300 group-hover:ring-accent/50'
+                            width={32}
+                            height={32}
+                            className='h-8 w-8 rounded-full object-cover ring-1 ring-white/10 transition-all duration-300 group-hover:ring-accent/50'
                         />
                         <span className='font-semibold tracking-tight text-gray-100'>
                             {constant.personalDetails.firstName} {constant.personalDetails.lastName}
@@ -76,10 +78,12 @@ const Navbar = () => {
                                 rel="noopener noreferrer"
                                 aria-label={social.label}
                             >
-                                <img
+                                <Image
                                     src={social.icon}
                                     alt=""
-                                    className={`w-[18px] opacity-60 transition-all duration-200 hover:scale-110 hover:opacity-100 ${social.invert ? 'rounded-full bg-white' : ''}`}
+                                    width={18}
+                                    height={18}
+                                    className={`h-[18px] w-[18px] object-contain opacity-60 transition-all duration-200 hover:scale-110 hover:opacity-100 ${social.invert ? 'rounded-full bg-white' : ''}`}
                                 />
                             </a>
                         ))}

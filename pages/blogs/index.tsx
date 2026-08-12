@@ -1,5 +1,5 @@
-import Head from "next/head";
 import { getPublishedPosts } from "@/lib/notion";
+import Seo from "@/components/Shared/Seo";
 import { GetStaticProps } from "next";
 import { constant } from "@/helpers/constants";
 import { useEffect, useState } from "react";
@@ -28,10 +28,10 @@ export default function Home({ posts }: any) {
 
     return (
         <div className="min-h-screen pb-20">
-            <Head>
-                <title>{`${constant.personalDetails.firstName}'s Blog`}</title>
-                <meta name="description" content="Started with frontend, built amazing projects using that, moved to backend and fell in love ❤️ with scalable backend architectures 🚀 and cloud ☁️ while playing with AWS, GCP, Azure, Docker 🐳, Kubernetes and terraform." />
-            </Head>
+            <Seo
+                title={`Writing — ${constant.personalDetails.firstName} ${constant.personalDetails.lastName}`}
+                description="Notes on infrastructure, distributed systems, and the things I learn breaking them."
+            />
             <section className="mx-auto w-11/12 max-w-5xl pt-16 md:w-10/12">
                 <SectionHeading
                     index="Writing"
@@ -42,14 +42,14 @@ export default function Home({ posts }: any) {
                     <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 font-mono text-sm text-accent">/</span>
                     <input
                         type="text"
-                        className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] py-2.5 pl-8 pr-4 font-mono text-sm text-gray-200 placeholder-gray-600 outline-none transition-colors duration-200 focus:border-accent/40"
+                        className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] py-2.5 pl-8 pr-4 font-mono text-sm text-gray-200 placeholder-faint outline-none transition-colors duration-200 focus:border-accent/40"
                         placeholder="search posts..."
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
                 <ol className="divide-y divide-white/[0.06]">
                     {published.length === 0 && (
-                        <p className="py-20 text-center font-mono text-sm text-gray-500">
+                        <p className="py-20 text-center font-mono text-sm text-subtle">
                             No search results found :(
                         </p>
                     )}

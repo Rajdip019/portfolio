@@ -39,7 +39,7 @@ const Section: React.FC<Props> = ({
         {href && (
           <Link
             href={href}
-            className="group mt-3 hidden items-center gap-1.5 font-mono text-xs text-gray-600 transition-colors hover:text-accent md:inline-flex"
+            className="group mt-3 hidden items-center gap-1.5 font-mono text-xs text-faint transition-colors hover:text-accent md:inline-flex"
           >
             {linkLabel}
             <span className="transition-transform duration-200 group-hover:translate-x-0.5">
@@ -54,7 +54,7 @@ const Section: React.FC<Props> = ({
         {href && (
           <Link
             href={href}
-            className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs text-gray-600 transition-colors hover:text-accent md:hidden"
+            className="mt-6 inline-flex items-center gap-1.5 font-mono text-xs text-faint transition-colors hover:text-accent md:hidden"
           >
             {linkLabel} <span>→</span>
           </Link>

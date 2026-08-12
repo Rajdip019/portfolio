@@ -26,6 +26,10 @@ module.exports = {
           soft: "#93c5fd",
           dim: "#1e3a8a",
         },
+        // Muted text that still clears WCAG AA (4.5:1) on the #08090b page.
+        // Tailwind's gray-500/600/700 measure 4.12 / 2.64 / 1.93 here.
+        subtle: "#8a919c", // 6.29:1 — secondary text
+        faint: "#757c87", // 4.74:1 — meta, dates, attribution
       },
       keyframes: {
         blink: {

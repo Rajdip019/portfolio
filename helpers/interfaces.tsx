@@ -8,6 +8,8 @@ export interface IWorkExperience {
         endDate: string;
         description: string[];
         location: string;
+        /** Shown as a badge when the role isn't standard full-time. */
+        employmentType?: string;
     }[];
 }
 

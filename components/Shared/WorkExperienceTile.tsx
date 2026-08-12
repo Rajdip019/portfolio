@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import { IWorkExperience } from '@/helpers/interfaces'
+import Image from 'next/image'
 import React from 'react'
 import { FiArrowUpRight } from "react-icons/fi";
 
@@ -21,13 +21,15 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp }) => {
     return (
         <article className='grid gap-6 py-10 md:grid-cols-[200px_1fr] md:gap-16 md:py-14'>
             <div className='md:pt-1'>
-                <img
+                <Image
                     src={workExp.logo}
-                    alt={workExp.company}
-                    className='h-10 w-10 rounded-full ring-1 ring-white/10'
+                    alt={`${workExp.company} logo`}
+                    width={40}
+                    height={40}
+                    className='h-10 w-10 rounded-full object-cover ring-1 ring-white/10'
                 />
-                <p className='mt-3 font-mono text-xs text-gray-500'>{spanOf(workExp)}</p>
-                <p className='mt-1 font-mono text-xs text-gray-700'>
+                <p className='mt-3 font-mono text-xs text-subtle'>{spanOf(workExp)}</p>
+                <p className='mt-1 font-mono text-xs text-faint'>
                     {workExp.experiences[0].location}
                 </p>
             </div>
@@ -42,14 +44,21 @@ const WorkExperienceTile: React.FC<Props> = ({ workExp }) => {
                     <h2 className='text-xl font-semibold tracking-tight text-gray-100 transition-colors group-hover:text-accent-soft'>
                         {workExp.company}
                     </h2>
-                    <FiArrowUpRight className='h-4 w-4 text-gray-600 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
+                    <FiArrowUpRight className='h-4 w-4 text-faint transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent' />
                 </a>
 
                 <ol className='mt-6 space-y-9'>
                     {workExp.experiences.map((exp, index) => (
                         <li key={index}>
-                            <p className='text-gray-200'>{exp.title}</p>
-                            <p className='mt-1 font-mono text-xs text-gray-600'>
+                            <div className='flex flex-wrap items-center gap-2'>
+                                <p className='text-gray-200'>{exp.title}</p>
+                                {exp.employmentType && (
+                                    <span className='rounded border border-white/10 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-subtle'>
+                                        {exp.employmentType}
+                                    </span>
+                                )}
+                            </div>
+                            <p className='mt-1 font-mono text-xs text-faint'>
                                 {exp.startDate} — {exp.endDate}
                             </p>
 
