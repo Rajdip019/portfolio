@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Rajdeep Sengupta">
+  <!-- Constructed from geometry, not a font glyph, so it renders identically
+       everywhere with no typeface dependency. Monoline: every stroke is 48 wide.
+       The bowl radius (58) is deliberately larger than the stroke so the counter
+       stays open at 16px instead of filling in. -->
+  <rect width="512" height="512" rx="112" fill="#0b0d11"/>
+  <rect x="4" y="4" width="504" height="504" rx="108" fill="none" stroke="#1c2029" stroke-width="8"/>
+  <g fill="none" stroke="#e8eaed" stroke-width="48" stroke-linecap="butt" stroke-linejoin="miter">
+    <!-- stem -->
+    <path d="M150 134 V378"/>
+    <!-- bowl: exact semicircle, r=58 -->
+    <path d="M150 158 H224 A58 58 0 0 1 224 274 H150"/>
+    <!-- leg -->
+    <path d="M218 274 L292 378"/>
+  </g>
+  <!-- terminal cursor, same motif as the boot loader -->
+  <rect x="338" y="146" width="48" height="220" fill="#60a5fa"/>
+</svg>

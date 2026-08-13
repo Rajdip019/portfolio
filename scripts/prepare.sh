@@ -71,7 +71,7 @@ export const constant = {
     firstName: "Your",
     lastName: "Name",
     email: "test@gmail.com",
-    picture: "/profile-pic.jpeg",
+    picture: "/profile.jpeg",
     website: "https://rajdeep.vercel.app", // Use https here
     linkedin: "https://www.linkedin.com/in/rajdeep-sengupta/",
     github: "https://github.com/Rajdip019",
@@ -156,6 +156,6 @@ NOTION_DATABASE_ID=
 EOL
 
 ## remove the profilr-pic.jpeg file
-rm -rf ./public/profile-pic.jpeg
+rm -rf ./public/profile.jpeg
 
 echo "Environment setup completed successfully 🎉"
