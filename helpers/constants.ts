@@ -56,7 +56,9 @@ export const constant = {
     linkedin: "https://www.linkedin.com/in/rajdeep-sengupta/",
     github: "https://github.com/Rajdip019",
     twitter: "https://twitter.com/RajdeepS019",
-    resume : "https://drive.google.com/file/d/1O47HSJlSYaMVcj5CqbG9ToB7eovIR7-3/view?usp=sharing"
+    // Self-hosted from /public: no Drive sign-in wall or preview chrome, opens
+    // inline, and the file ships with the deploy so it can never go stale.
+    resume: "/resume.pdf"
   },
   workExperience: [
     {
